@@ -1,0 +1,7 @@
+/node_modules
+/vendor
+/.idea
+/.vagrant
+env.php
+/docker/mariadb/data/*
+/docker/nginx/logs/*

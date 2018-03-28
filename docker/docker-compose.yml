@@ -1,0 +1,48 @@
+version: '3.4'
+
+services:
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        ports:
+            - "80:80"
+        networks:
+            - frontend
+        volumes:
+            - ${BASE_PATH}:/var/www/html
+            - ./nginx/conf:/etc/nginx/conf.d
+            - ./nginx/logs:/var/log/nginx/
+        depends_on:
+            - new-sgc
+
+    new-sgc:
+        image: php:7.1.15-fpm
+        container_name: new-sgc
+        networks:
+            - backend
+            - frontend
+        volumes:
+            - ${BASE_PATH}:/var/www/html
+        depends_on:
+            - database
+
+    database:
+        image: mariadb
+        container_name: database
+        expose:
+            - 3306
+        ports:
+            - "3306:3306"
+        networks:
+            - backend
+        volumes:
+            - ./mariadb/data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=secret
+            - MYSQL_USER=newsgc
+            - MYSQL_PASSWORD=secret
+            - MYSQL_DATABASE=newsgc
+
+networks:
+    backend:
+    frontend:
