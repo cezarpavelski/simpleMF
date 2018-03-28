@@ -1,13 +1,13 @@
 <?
 
-namespace App\Views;
+namespace Framework;
 
 use App\Components\ResolverComponent;
 
 class Main
 {
 
-    static function execute()
+    public static function execute()
     {
         $array = ['input','text'];
         foreach ($array as $value) {

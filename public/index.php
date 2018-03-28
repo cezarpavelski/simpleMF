@@ -5,13 +5,13 @@ ini_set('max_execution_time', 10 * 60);
 
 require __DIR__ . '/../env.php';
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../views/main.php';
+require __DIR__ . '/../framework/Main.php';
 
 ob_start();
 
 header('Content-Type: text/html; charset=utf-8');
 
-\App\Views\Main::execute();
+Framework\Main::execute();
 
 ob_end_flush();
 
