@@ -1,4 +1,4 @@
-<?
+<?php
 
 date_default_timezone_set(getenv('TIMEZONE'));
 ini_set('max_execution_time', 10 * 60);
