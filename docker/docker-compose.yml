@@ -16,7 +16,7 @@ services:
             - new-sgc
 
     new-sgc:
-        image: php:7.1.15-fpm
+        build: ./php
         container_name: new-sgc
         networks:
             - backend
