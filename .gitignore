@@ -6,3 +6,7 @@ env.php
 /docker/mariadb/data/*
 /docker/nginx/logs/*
 /storage/cache/*
+
+!/docker/mariadb/data/.gitkeep
+!/docker/nginx/logs/.gitkeep
+!/storage/cache/.gitkeep
