@@ -42,8 +42,11 @@
     <!-- Main content-->
         <section class="content">
             <div class="container-fluid">
-                <?php Framework\Main::run(); ?>
-                <!-- @yield('content') -->
+                <form action="#" method="post">
+                    <?php Framework\Main::run(); ?>
+                    <!-- @yield('content') -->
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
             </div>
         </section>
     <!-- End main content-->

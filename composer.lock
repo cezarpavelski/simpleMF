@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "872e31b1c6d0ecc2ebf5953e43b3babd",
+    "content-hash": "7e6d7031bc1a878dd3f04cbd0a47553c",
     "packages": [
         {
             "name": "robmorgan/phinx",

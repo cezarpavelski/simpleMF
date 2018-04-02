@@ -3,25 +3,17 @@
 namespace Framework;
 
 use Framework\Components\ResolverComponent;
-use Framework\Database\ActiveRecord;
+use Symfony\Component\Yaml\Yaml;
 
 class Main
 {
 
     public static function run(): void
     {
-        $array = ['input','text'];
-        foreach ($array as $value) {
+        $YML = Yaml::parseFile(__DIR__.'/../config/pages/page.example.yml');
+        foreach ($YML['register']['type'] as $value) {
             ResolverComponent::resolve($value);
         }
-        self::test();
     }
 
-    public function test()
-    {
-        $a = new ActiveRecord();
-        $a->table = 'users';
-        $a->params = [NULL,'ddddd','sdfdfdfsfsdf','asdfsdfsdf', date('Y-m-d H:i:s')];
-        $a->insert();
-    }
 }
