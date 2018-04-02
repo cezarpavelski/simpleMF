@@ -6,7 +6,7 @@ use Framework\Database\Connection;
 use PDO;
 use StdClass;
 
-class ActiveRecord extends Connection
+class DB extends Connection
 {
     private $connection;
 
@@ -19,7 +19,8 @@ class ActiveRecord extends Connection
     {
         $sth = $this->connection->prepare($query);
         $sth->execute($bindings);
-        return $sth->fetchAll(PDO::FETCH_CLASS) ? $sth->fetchAll(PDO::FETCH_CLASS) : new StdClass;
+        $rows = $sth->fetchAll(PDO::FETCH_CLASS);
+        return $rows ? $rows : new StdClass;
     }
 
 }

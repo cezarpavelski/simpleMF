@@ -7,29 +7,28 @@ use PDOException;
 
 class Connection
 {
-    private $driver;
-    private $host;
-    private $port;
-    private $database;
-    private $username;
-    private $password;
+    private static $driver;
+    private static $username;
+    private static $password;
 
-    public function __construct() {
-        $this->host = getenv('DB_HOST');
-        $this->port = getenv('DB_PORT');
-        $this->database = getenv('DB_DATABASE');
-        $this->username = getenv('DB_USERNAME');
-        $this->password = getenv('DB_PASSWORD');
-        $this->driver = "mysql:dbname=$this->database;host=$this->host:$this->port";
-    }
-
-    public function connect(): PDO {
+    public static function connect(): PDO {
         try {
-            $connection = new PDO($this->driver, $this->username, $this->password);
+            self::setup();
+            $connection = new PDO(self::$driver, self::$username, self::$password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connection;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            echo 'PDO: '.$e->getMessage();
         }
+    }
+
+    private function setup(): void
+    {
+        $host = getenv('DB_HOST');
+        $port = getenv('DB_PORT');
+        $database = getenv('DB_DATABASE');
+        self::$username = getenv('DB_USERNAME');
+        self::$password = getenv('DB_PASSWORD');
+        self::$driver = "mysql:dbname=$database;host=$host:$port";
     }
 }
