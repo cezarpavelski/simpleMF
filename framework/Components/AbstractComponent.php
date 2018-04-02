@@ -10,10 +10,13 @@ abstract class AbstractComponent
     public function __construct(string $dir)
     {
         $loader = new \Twig_Loader_Filesystem($dir);
-        $this->template = new \Twig_Environment($loader, array(
-            'cache' => __DIR__.'/../../storage/cache',
-        ));
-
+        $cachePath = array();
+        if(getenv('CACHE_TEMPLATE') == 'true') {
+            $cachePath = array(
+                'cache' => __DIR__.'/../../storage/cache',
+            );
+        }
+        $this->template = new \Twig_Environment($loader, $cachePath);
         $this->dir = $dir;
     }
 

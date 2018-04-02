@@ -11,7 +11,7 @@ ob_start();
 
 header('Content-Type: text/html; charset=utf-8');
 
-Framework\Main::run();
+require __DIR__ . '/../public/main.php';
 
 ob_end_flush();
 

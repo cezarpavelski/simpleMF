@@ -21,7 +21,9 @@ class Index extends AbstractComponent
     protected function getParams(): array
     {
         return [
-            'a' => 'Danilera'
+            'name' => 'input',
+            'label' => 'Input',
+            'value' => 'value input',
         ];
     }
 }

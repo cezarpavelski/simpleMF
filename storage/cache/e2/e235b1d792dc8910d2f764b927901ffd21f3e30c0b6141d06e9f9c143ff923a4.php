@@ -20,9 +20,12 @@ class __TwigTemplate_8eaf1897f0370ef3b9201503033405584158292aacbc0e338ab3144284c
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<textarea name=\"name\" rows=\"8\" cols=\"80\">";
+        echo "<div class=\"row\">
+    <textarea name=\"name\" rows=\"8\" cols=\"80\">";
+        // line 2
         echo twig_escape_filter($this->env, ($context["b"] ?? null), "html", null, true);
         echo "</textarea>
+</div>
 ";
     }
 
@@ -38,7 +41,7 @@ class __TwigTemplate_8eaf1897f0370ef3b9201503033405584158292aacbc0e338ab3144284c
 
     public function getDebugInfo()
     {
-        return array (  23 => 1,);
+        return array (  26 => 2,  23 => 1,);
     }
 
     public function getSourceContext()

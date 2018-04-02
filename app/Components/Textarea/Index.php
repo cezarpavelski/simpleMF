@@ -21,7 +21,9 @@ class Index extends AbstractComponent
     protected function getParams(): array
     {
         return [
-            'b' => 'teste texto'
+            'name' => 'textarea',
+            'label' => 'Textarea',
+            'value' => 'value textarea',
         ];
     }
 }

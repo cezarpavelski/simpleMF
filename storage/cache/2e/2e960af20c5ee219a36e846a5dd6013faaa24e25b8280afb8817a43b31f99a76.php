@@ -20,9 +20,12 @@ class __TwigTemplate_71a4bcc8451cca2a3ea87cf2e73770800a368fb86ff643fcefa21fc5f4d
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<input type=\"text\" name=\"\" value=\"";
+        echo "<div class=\"row\">
+    <input type=\"text\" name=\"\" value=\"";
+        // line 2
         echo twig_escape_filter($this->env, ($context["a"] ?? null), "html", null, true);
         echo "\">
+</div>
 ";
     }
 
@@ -38,7 +41,7 @@ class __TwigTemplate_71a4bcc8451cca2a3ea87cf2e73770800a368fb86ff643fcefa21fc5f4d
 
     public function getDebugInfo()
     {
-        return array (  23 => 1,);
+        return array (  26 => 2,  23 => 1,);
     }
 
     public function getSourceContext()

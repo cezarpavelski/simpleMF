@@ -29,7 +29,6 @@ class ActiveRecord extends Connection implements IActiveRecord
     public function insert(): bool
     {
         $placeholder = $this->getPlaceholder();
-        echo "INSERT INTO $this->table VALUES ($placeholder)";
         try {
             $sth = $this->connection->prepare("INSERT INTO $this->table VALUES ($placeholder)");
             return $sth->execute($this->params);

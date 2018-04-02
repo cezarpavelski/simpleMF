@@ -5,3 +5,4 @@
 env.php
 /docker/mariadb/data/*
 /docker/nginx/logs/*
+/storage/cache/*
