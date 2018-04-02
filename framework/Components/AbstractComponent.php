@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Components;
+namespace Framework\Components;
 
 abstract class AbstractComponent
 {
     private $dir;
     private $template;
-    protected $params = [];
 
     public function __construct(string $dir)
     {
@@ -18,17 +17,20 @@ abstract class AbstractComponent
         $this->dir = $dir;
     }
 
-    protected function getHtml()
+    abstract public function render(): void;
+    abstract protected function getParams(): array;
+
+    protected function getHtml(): void
     {
-        echo $this->template->render('View.html', $this->params);
+        echo $this->template->render('View.html', $this->getParams());
     }
 
-    protected function getStyle()
+    protected function getStyle(): void
     {
         require $this->dir.'/Style.css';
     }
 
-    protected function getScripts()
+    protected function getScripts(): void
     {
         require $this->dir.'/Scripts.js';
     }

@@ -11,7 +11,7 @@ ob_start();
 
 header('Content-Type: text/html; charset=utf-8');
 
-Framework\Main::execute();
+Framework\Main::run();
 
 ob_end_flush();
 

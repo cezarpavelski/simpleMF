@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components;
+namespace Framework\Components;
 
 use App\Components\Input\Index as Input;
 use App\Components\Textarea\Index as Textarea;
@@ -23,7 +23,7 @@ abstract class ResolverComponent
         "password" => "",
     ];
 
-    public static function resolve($type)
+    public static function resolve(string $type): void
     {
         $class = self::COMPONENTS_ENABLED[$type];
         $component = new $class();

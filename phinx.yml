@@ -16,9 +16,9 @@ environments:
 
     development:
         adapter: mysql
-        host: localhost
-        name: sgc
-        user: sgc
+        host: 127.0.0.1
+        name: newsgc
+        user: newsgc
         pass: 'secret'
         port: 3306
         charset: utf8

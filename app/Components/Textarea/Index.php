@@ -2,10 +2,10 @@
 
 namespace App\Components\Textarea;
 
-use App\Components\IComponent;
-use App\Components\AbstractComponent;
+use Framework\Components\IComponent;
+use Framework\Components\AbstractComponent;
 
-class Index extends AbstractComponent implements IComponent
+class Index extends AbstractComponent
 {
 
     public function __construct()
@@ -13,8 +13,15 @@ class Index extends AbstractComponent implements IComponent
         parent::__construct(__DIR__);
     }
 
-    public function render() {
-        $this->params['b'] = 'teste texto';
+    public function render(): void
+    {
         $this->getHtml();
+    }
+
+    protected function getParams(): array
+    {
+        return [
+            'b' => 'teste texto'
+        ];
     }
 }
