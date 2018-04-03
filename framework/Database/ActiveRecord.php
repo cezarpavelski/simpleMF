@@ -7,15 +7,20 @@ use Framework\Database\IActiveRecord;
 use PDO;
 use PDOException;
 use StdClass;
-use ReflectionClass;
+use ReflectionObject;
+use ReflectionProperty;
 
 class ActiveRecord implements IActiveRecord
 {
     private $connection;
-    protected $class;
+    private $class;
+    private $table;
+    private $params = [];
 
-    public function __construct() {
+    public function __construct($class, $table) {
         $this->connection = Connection::connect();
+        $this->class = $class;
+        $this->table = $table;
     }
 
     public function find(int $id): StdClass
@@ -33,7 +38,7 @@ class ActiveRecord implements IActiveRecord
             $sth = $this->connection->prepare("INSERT INTO $this->table VALUES ($placeholder)");
             return $sth->execute($this->params);
         } catch (PDOException $e) {
-            echo $e->getMessage();exit;
+            echo 'insert: '.$e->getMessage();exit;
         }
     }
 
@@ -44,7 +49,7 @@ class ActiveRecord implements IActiveRecord
             $sth = $this->connection->prepare("UPDATE $this->table SET $placeholder WHERE id = ?");
             return $sth->execute($this->params);
         } catch (PDOException $e) {
-            echo $e->getMessage();exit;
+            echo 'update: '.$e->getMessage();exit;
         }
     }
 
@@ -60,34 +65,24 @@ class ActiveRecord implements IActiveRecord
 
     private function placeholderInsert(): string
     {
-        $class = new ReflectionClass($this->class);
-		foreach($class->getMethods() as $mt){
-            $search=strstr($mt->getName(),'get');
-			if($search){
-				$this->params[] = call_user_func([$this->class, $mt->getName()]);
-			}
-		}
+        $class = new ReflectionObject($this->class);
+        foreach($class->getProperties(ReflectionProperty::IS_PUBLIC) as $prop){
+            $this->params[] = $this->class->{$prop->getName()};
+        }
         return substr(str_repeat('?,',count($this->params)),0,-1);
     }
 
     private function placeholderUpdate(): string
     {
-        $class = new ReflectionClass($this->class);
-		foreach($class->getMethods() as $mt){
-            $search=strstr($mt->getName(),'get');
-			if($search){
-				$value = call_user_func([$this->class, $mt->getName()]);
-                $placeholder[] = $this->descamelize(substr($mt->getName(), 3)).'=?';
-                $this->params[] = $value;
-			}
-		}
-        $this->params[] = $this->class->getId();
-        return implode($placeholder,',');
-    }
+        $class = new ReflectionObject($this->class);
+        foreach($class->getProperties(ReflectionProperty::IS_PUBLIC) as $prop){
+            $placeholder[] = $prop->getName().'=?';
+            $this->params[] = $this->class->{$prop->getName()};
+        }
 
-    private function descamelize(string $input): string
-    {
-        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $input));
+        $this->params[] = $this->class->id;
+
+        return implode($placeholder,',');
     }
 
 }

@@ -15,7 +15,7 @@ class DB
         $sth = $connection->prepare($query);
         $sth->execute($bindings);
         $rows = $sth->fetchAll(PDO::FETCH_CLASS);
-        return $rows ? $rows : new StdClass;
+        return $rows ? $rows : [];
     }
 
 }

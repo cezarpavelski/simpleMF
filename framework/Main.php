@@ -6,6 +6,7 @@ use Framework\Components\ResolverComponent;
 use Symfony\Component\Yaml\Yaml;
 use ReflectionClass;
 use Framework\Entities\User;
+use Framework\Entities\Component;
 use Framework\Database\DB;
 
 class Main
@@ -18,11 +19,17 @@ class Main
             ResolverComponent::resolve($value);
         }
         try {
-            $user = new User(169, 'Cezar Teste up', 'cezar.teste@gmail.com', '123456', date('Y-m-d H:i:s'));
+            $user = new User(1, 'Cezar Teste up1111 eh nois', 'cezar.teste@gmail.com', '123456', date('Y-m-d H:i:s'));
             $user->update();
-            var_dump($user->findAll());
-            var_dump(DB::execute('select * from users where id = ?', [5]));
 
+            $component = new Component('users');
+            $component->id = NULL;
+            $component->name = 'Cezar Teste StdClass eh nois';
+            $component->email = 'cezar.teste@gmail.com';
+            $component->password = '12345600000';
+            $component->created_at = date('Y-m-d H:i:s');
+
+            $component->insert();
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

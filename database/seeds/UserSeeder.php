@@ -1,5 +1,7 @@
 <?php
 
+require(__DIR__.'/../../env.php');
+
 use Phinx\Seed\AbstractSeed;
 
 class UserSeeder extends AbstractSeed
@@ -10,7 +12,7 @@ class UserSeeder extends AbstractSeed
             [
                 'name'    => 'Admin',
                 'email'    => 'admin@admin.com',
-                'password'    => md5('foo'),
+                'password'    => getenv('APP_KEY').hash('sha256', 'senha'),
                 'created_at' => date('Y-m-d H:i:s'),
             ]
         ];
