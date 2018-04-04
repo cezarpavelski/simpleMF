@@ -9,6 +9,8 @@ use Framework\Entities\User;
 use Framework\Entities\Component;
 use Framework\Database\DB;
 
+use Framework\Services\User as UserService;
+
 class Main
 {
 
@@ -30,6 +32,10 @@ class Main
             $component->created_at = date('Y-m-d H:i:s');
 
             $component->insert();
+
+            $userService = new UserService();
+            $userService->recoveryPassword();
+            
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
