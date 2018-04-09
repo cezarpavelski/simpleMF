@@ -27,10 +27,10 @@ abstract class ResolverComponent
         "url" => "",
     ];
 
-    public static function resolve(string $type): void
+    public static function resolve(string $type): string
     {
         $class = self::COMPONENTS_ENABLED[$type];
         $component = new $class();
-        $component->render();
+        return $component->render();
     }
 }

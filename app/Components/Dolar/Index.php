@@ -15,9 +15,9 @@ class Index extends AbstractComponent
         parent::__construct(__DIR__);
     }
 
-    public function render(): void
+    public function render(): string
     {
-        $this->getHtml();
+        return $this->getHtml();
     }
 
     protected function getParams(): array
@@ -44,7 +44,7 @@ class Index extends AbstractComponent
 
         $xpath = new DOMXPath($dom);
         $nlist = $xpath->query("//*[@id='nacional']");
-		
+
         return str_replace(',', '.', $nlist[0]->getAttribute('value'));
     }
 

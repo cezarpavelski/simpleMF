@@ -2,6 +2,8 @@
 
 namespace Framework\Components;
 
+use Framework\Templates\Template;
+
 abstract class AbstractComponent
 {
     private $dir;
@@ -9,23 +11,16 @@ abstract class AbstractComponent
 
     public function __construct(string $dir)
     {
-        $loader = new \Twig_Loader_Filesystem($dir);
-        $cachePath = array();
-        if(getenv('CACHE_TEMPLATE') == 'true') {
-            $cachePath = array(
-                'cache' => __DIR__.'/../../storage/cache',
-            );
-        }
-        $this->template = new \Twig_Environment($loader, $cachePath);
+        $this->template = new Template($dir);
         $this->dir = $dir;
     }
 
-    abstract public function render(): void;
+    abstract public function render(): string;
     abstract protected function getParams(): array;
 
-    protected function getHtml(): void
+    protected function getHtml(): string
     {
-        echo $this->template->render('View.html', $this->getParams());
+        return $this->template->render('View.html', $this->getParams());
     }
 
     protected function getStyle(): void

@@ -9,3 +9,9 @@ route2:
     defaults: { _controller: '\Framework\Controllers\Authentication::login' }
     options:
         utf8: true
+
+route3:
+    path:     /{table}
+    defaults: { _controller: '\Framework\Controllers\Components::new' }
+    options:
+        utf8: true

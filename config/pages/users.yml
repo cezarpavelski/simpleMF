@@ -1,0 +1,17 @@
+title: 'Page Example'
+
+table: 'users'
+
+gallery: 0
+
+register:
+    labels: ['Name', 'Email', 'Password', 'Dolar']
+    fields: ['name', 'email', 'password', 'dolar']
+    type: ['input', 'email', 'password', 'dolar']
+    plus: []
+
+list:
+    labels: ['Name', 'Email', 'Password']
+    fields: ['name', 'email', 'password']
+    type: ['input', 'email', 'password']
+    plus: []
