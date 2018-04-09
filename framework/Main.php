@@ -33,9 +33,9 @@ class Main
 
             $component->insert();
 
-            $userService = new UserService();
-            $userService->recoveryPassword();
-            
+            // $userService = new UserService();
+            // $userService->recoveryPassword();
+
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

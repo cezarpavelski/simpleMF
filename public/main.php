@@ -43,7 +43,7 @@
         <section class="content">
             <div class="container-fluid">
                 <form action="#" method="post">
-                    <?php Framework\Main::run(); ?>
+                    <?php Routes\Router::run(); ?>
                     <!-- @yield('content') -->
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>

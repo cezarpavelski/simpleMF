@@ -1,0 +1,11 @@
+route1:
+    path:     /
+    defaults: { _controller: '\Framework\Main::run' }
+    options:
+        utf8: true
+
+route2:
+    path:     /login
+    defaults: { _controller: '\Framework\Controllers\Authentication::login' }
+    options:
+        utf8: true
