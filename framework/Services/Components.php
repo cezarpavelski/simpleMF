@@ -2,16 +2,18 @@
 
 namespace Framework\Services;
 
-use Framework\Components\Main;
-use Framework\Templates\Template;
+use Framework\Components\Main as MainComponents;
 
 class Components
 {
 
-    public static function new(string $table): void
+    public static function new(string $table): array
     {
-        $components = Main::run($table);
-        self::render(['components' => $components]);
+        $components = MainComponents::run($table);
+        return [
+            'table' => $table,
+            'components' => $components
+        ];
     }
 
     public static function save(string $table): void
@@ -37,12 +39,6 @@ class Components
     public static function list(string $table): void
     {
         var_dump(DB::execute('select * from users'));
-    }
-
-    private function render(array $params): void
-    {
-        $template = new Template(__DIR__.'/../../views');
-        echo $template->render('components/main.html', $params);
     }
 
 }

@@ -14,9 +14,6 @@ ob_start();
 header('Content-Type: text/html; charset=utf-8');
 
 Router::run();
-// $template = new Template(__DIR__.'/../views');
-// echo $template->render('main.html', []);
-// require __DIR__ . '/../public/main.php';
 
 ob_end_flush();
 

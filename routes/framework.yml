@@ -1,6 +1,6 @@
 route1:
     path:     /
-    defaults: { _controller: '\Framework\Main::run' }
+    defaults: { _controller: '\Framework\Controllers\Commons::home' }
     options:
         utf8: true
 
