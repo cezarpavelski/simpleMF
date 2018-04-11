@@ -25,6 +25,7 @@ services:
             - ${BASE_PATH}:/var/www/html
         depends_on:
             - database
+            - redis1
 
     database:
         image: mariadb
@@ -42,6 +43,18 @@ services:
             - MYSQL_USER=newsgc
             - MYSQL_PASSWORD=secret
             - MYSQL_DATABASE=newsgc
+
+    redis1:
+        image: redis
+        container_name: redis1
+        expose:
+            - 6379
+        ports:
+            - "6379:6379"
+        networks:
+            - backend
+        environment:
+            - REDIS_PORT=6379
 
 networks:
     backend:
