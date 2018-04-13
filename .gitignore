@@ -3,6 +3,7 @@
 /.idea
 /.vagrant
 env.php
+/docker/.env
 /docker/mariadb/data/*
 /docker/nginx/logs/*
 /storage/cache/*
