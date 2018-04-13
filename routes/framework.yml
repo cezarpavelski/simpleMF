@@ -5,7 +5,7 @@ route1:
         utf8: true
 
 route2:
-    path:     /login
+    path:     /login/{lang}
     defaults: { _controller: '\Framework\Controllers\Authentication::login' }
     options:
         utf8: true
