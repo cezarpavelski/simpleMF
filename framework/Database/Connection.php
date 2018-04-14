@@ -10,13 +10,19 @@ class Connection
     private static $driver;
     private static $username;
     private static $password;
+    private static $instance = null;
 
     public static function connect(): PDO {
         try {
-            self::setup();
-            $connection = new PDO(self::$driver, self::$username, self::$password);
-            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $connection;
+            if ( !isset( self::$instance ) ) {
+                self::setup();
+                $connection = new PDO(self::$driver, self::$username, self::$password);
+                $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$instance = $connection;
+            }
+
+            return self::$instance;
+
         } catch (PDOException $e) {
             echo 'PDO: '.$e->getMessage();
         }
@@ -31,4 +37,5 @@ class Connection
         self::$password = getenv('DB_PASSWORD');
         self::$driver = "mysql:dbname=$database;host=$host:$port";
     }
+
 }
