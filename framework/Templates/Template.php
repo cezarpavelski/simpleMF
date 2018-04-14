@@ -5,6 +5,7 @@ namespace Framework\Templates;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Translation\Translator as SymfonyTranslator;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
+use Framework\Session\Store as Session;
 
 class Template
 {
@@ -32,8 +33,8 @@ class Template
     {
         $locale = getenv('LANGUAGE');
 
-        if($_SESSION['lang']){
-            $locale = $_SESSION['lang'];
+        if(Session::get('lang')){
+            $locale = Session::get('lang');
         }
 
         $translator = new SymfonyTranslator($locale);
