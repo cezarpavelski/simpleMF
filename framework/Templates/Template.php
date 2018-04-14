@@ -24,7 +24,7 @@ class Template
         $this->template->addExtension(new TranslationExtension($this->getTranslation()));
     }
 
-    public function render(string $pathTemplate, array $params): string
+    public function render(string $pathTemplate, array $params = []): string
     {
         return $this->template->render($pathTemplate, $params);
     }

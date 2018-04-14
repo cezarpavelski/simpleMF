@@ -7,7 +7,7 @@ require __DIR__ . '/../env.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 use Framework\Templates\Template;
-use Routes\Router;
+use Framework\Routes\Router;
 
 ob_start();
 
