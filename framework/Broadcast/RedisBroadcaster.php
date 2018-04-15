@@ -3,8 +3,9 @@
 namespace Framework\Broadcast;
 
 use Predis\Client as PredisClient;
+use Framework\Broadcast\IBroadcast;
 
-class RedisBroadcaster
+class RedisBroadcaster implements IBroadcast
 {
 
     private $broadcaster;
