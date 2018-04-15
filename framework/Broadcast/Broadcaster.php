@@ -3,9 +3,8 @@
 namespace Framework\Broadcast;
 
 use Framework\Broadcast\RedisBroadcaster;
-use Framework\Broadcast\IBroadcast;
 
-class Broadcaster implements IBroadcast
+class Broadcaster
 {
 
     public static function publish(string $channel, array $payload): void
