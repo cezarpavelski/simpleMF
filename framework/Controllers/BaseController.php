@@ -2,7 +2,7 @@
 
 namespace Framework\Controllers;
 
-use Framework\Templates\Template;
+use Framework\View\Template;
 
 class BaseController
 {

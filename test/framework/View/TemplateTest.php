@@ -3,7 +3,7 @@
 namespace Test\Framework\Template;
 
 use Test\BaseTestCase;
-use Framework\Templates\Template;
+use Framework\View\Template;
 
 class TemplateTest extends BaseTestCase
 {

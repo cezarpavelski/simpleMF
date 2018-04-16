@@ -2,7 +2,7 @@
 
 namespace Framework\Components;
 
-use Framework\Templates\Template;
+use Framework\View\Template;
 
 abstract class AbstractComponent
 {

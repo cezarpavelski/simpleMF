@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Templates;
+namespace Framework\View;
 
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Translation\Translator as SymfonyTranslator;
