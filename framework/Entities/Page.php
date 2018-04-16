@@ -5,7 +5,7 @@ namespace Framework\Entities;
 use Framework\Entities\BaseModel;
 use StdClass;
 
-class Component extends BaseModel
+class Page extends BaseModel
 {
     protected $table;
 

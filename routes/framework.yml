@@ -12,6 +12,6 @@ route2:
 
 route3:
     path:     /{table}
-    defaults: { _controller: '\Framework\Controllers\Components::new' }
+    defaults: { _controller: '\Framework\Controllers\Pages::new' }
     options:
         utf8: true

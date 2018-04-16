@@ -4,7 +4,7 @@ namespace Framework\Services;
 
 use Framework\Components\Main as MainComponents;
 
-class Components
+class Pages
 {
 
     public static function new(string $table): array
