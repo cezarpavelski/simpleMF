@@ -7,7 +7,7 @@
     use Symfony\Component\Routing\RequestContext;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\Routing\Matcher\UrlMatcher;
-    use Framework\Templates\Template;
+    use Framework\View\Template;
 
     class Router
     {

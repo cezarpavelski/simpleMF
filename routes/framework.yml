@@ -11,6 +11,18 @@ route2:
         utf8: true
 
 route3:
+    path:     /pdf
+    defaults: { _controller: '\Framework\Controllers\Commons::generatePDF' }
+    options:
+        utf8: true
+
+route4:
+    path:     /csv
+    defaults: { _controller: '\Framework\Controllers\Commons::generateCSV' }
+    options:
+        utf8: true
+
+route5:
     path:     /{table}
     defaults: { _controller: '\Framework\Controllers\Pages::new' }
     options:

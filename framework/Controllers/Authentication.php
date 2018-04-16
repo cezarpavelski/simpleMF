@@ -13,7 +13,6 @@ class Authentication extends BaseController
     {
         Translator::setLocale($lang);
         echo self::render('home/main.html', DB::execute('select * from users'));
-        //var_dump(DB::execute('select * from users'));
     }
 
 }
