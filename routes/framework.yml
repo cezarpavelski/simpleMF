@@ -5,8 +5,8 @@ route1:
         utf8: true
 
 route2:
-    path:     /login/{lang}
-    defaults: { _controller: '\Framework\Controllers\Authentication::login' }
+    path:     /lang/{lang}
+    defaults: { _controller: '\Framework\Controllers\Commons::setLocale' }
     options:
         utf8: true
 
@@ -23,6 +23,25 @@ route4:
         utf8: true
 
 route5:
+    path:     /socket
+    defaults: { _controller: '\Framework\Controllers\Commons::socket' }
+    options:
+        utf8: true
+
+route6:
+    path:     /script-key
+    defaults: { _controller: '\Framework\Controllers\Commons::scriptKey' }
+    options:
+        utf8: true
+
+
+route7:
+    path:     /mail/{email}
+    defaults: { _controller: '\Framework\Controllers\Commons::sendMail' }
+    options:
+        utf8: true
+
+route50:
     path:     /{table}
     defaults: { _controller: '\Framework\Controllers\Pages::new' }
     options:
