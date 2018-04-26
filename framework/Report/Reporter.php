@@ -2,10 +2,9 @@
 
 namespace Framework\Report;
 
-use Framework\Report\IReport;
 use Framework\Report\IReporter;
 
-class Reporter implements IReport
+class Reporter
 {
 
     public static function generate(IReporter $reporter): string
