@@ -14,7 +14,7 @@ class User extends BaseModel
     public $password;
     public $created_at;
 
-    public function __construct($id, $name, $email, $password, $created_at)
+    public function __construct($id = NULL, $name = NULL, $email = NULL, $password = NULL, $created_at = NULL)
     {
         $this->id = $id;
         $this->name = $name;

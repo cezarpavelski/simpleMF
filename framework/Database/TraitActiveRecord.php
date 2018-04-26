@@ -15,6 +15,12 @@ trait TraitActiveRecord
         return $this->active_record->find($id);
     }
 
+    public function findWhere(string $where, array $params): array
+    {
+        $this->active_record = new ActiveRecord($this, $this->table);
+        return $this->active_record->findWhere($where, $params);
+    }
+
     public function insert(): bool
     {
         $this->active_record = new ActiveRecord($this, $this->table);

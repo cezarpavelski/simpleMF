@@ -34,10 +34,23 @@ route6:
     options:
         utf8: true
 
-
 route7:
     path:     /mail/{email}
     defaults: { _controller: '\Framework\Controllers\Commons::sendMail' }
+    options:
+        utf8: true
+
+route8:
+    path:     /login
+    defaults: { _controller: '\Framework\Controllers\Authentication::login' }
+    methods: [POST]
+    options:
+        utf8: true
+
+route9:
+    path:     /login
+    defaults: { _controller: '\Framework\Controllers\Authentication::show' }
+    methods: [GET]
     options:
         utf8: true
 

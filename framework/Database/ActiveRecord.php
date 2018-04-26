@@ -31,6 +31,14 @@ class ActiveRecord implements IActiveRecord
         return $row ? $row : new StdClass;
     }
 
+    public function findWhere(string $where, array $params): array
+    {
+        $sth = $this->connection->prepare("SELECT * FROM $this->table WHERE $where");
+        $sth->execute($params);
+        $rows = $sth->fetchAll(PDO::FETCH_OBJ);
+        return count($rows) > 0 ? $rows : [];
+    }
+
     public function insert(): bool
     {
         $placeholder = $this->placeholderInsert();

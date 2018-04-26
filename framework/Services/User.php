@@ -5,13 +5,34 @@ namespace Framework\Services;
 use PHPMailer\PHPMailer\PHPMailer;
 use Framework\Mail\Mailer;
 use Framework\Entities\User as UserEntity;
+use Framework\Auth\Authenticator;
+use Framework\Facades\Request;
+use Framework\Session\Store as Session;
+use Framework\Exceptions\AuthenticationException;
+use StdClass;
 
 class User
 {
 
-    public function login(): bool
+    public function login(): ?StdClass
     {
-        return true;
+        $email = Request::post('email');
+        $password = $this->cryptPassword(Request::post('password'));
+        $user = Authenticator::authenticate($email, $password);
+
+        if(!empty($user)){
+            Session::set('user', json_encode($user[0]));
+            return $user[0];
+        }
+        throw new AuthenticationException("User not found", 1);
+    }
+
+    public function validateSession(): bool
+    {
+        if(Session::get('user')){
+            return true;
+        }
+        throw new AuthenticationException("Session expired", 1);
     }
 
     public function logout(): bool
@@ -40,6 +61,11 @@ class User
         } catch (MailException $e) {
             echo $e->getMessage();exit;
         }
+    }
+
+    private function cryptPassword(string $password): string
+    {
+        return hash('sha256', getenv('APP_KEY').$password);
     }
 
 }
