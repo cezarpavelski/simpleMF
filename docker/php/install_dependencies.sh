@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 apt-get update
-
 apt-get install -y apt-utils
+apt-get install -y build-essential
 apt-get install -y locales
+apt-get install -y gettext gettext-doc libgettextpo-dev
 
 apt-get install -yq \
     libfreetype6-dev \
@@ -19,9 +20,8 @@ docker-php-ext-install pdo_mysql \
     mbstring \
     mysqli \
     mcrypt \
-    intl \
     gettext \
-    gettext-doc
+    intl
 
 pecl install xdebug-2.5.0 \
 	&& docker-php-ext-enable xdebug
