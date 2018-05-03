@@ -15,7 +15,12 @@ class Commons extends BaseController
 
     public static function home(): void
     {
-        echo self::render('home/main.html');
+        echo self::render('home/main.html', [
+            'v' => 3.56,
+            'count1' => 1,
+            'count2' => 5,
+            'date' => date('Y-m-d H:i:s')
+        ]);
     }
 
     public static function socket(): void
@@ -33,7 +38,12 @@ class Commons extends BaseController
     public static function setLocale($lang): void
     {
         Translator::setLocale($lang);
-        echo self::render('home/main.html');
+        echo self::render('home/main.html', [
+            'v' => 3.56,
+            'count1' => 1,
+            'count2' => 5,
+            'date' => date('Y-m-d H:i:s')
+        ]);
     }
 
     public static function sendMail($email): void
@@ -44,7 +54,7 @@ class Commons extends BaseController
 
     public static function generatePDF(): void
     {
-        $html = "<div>Mestre dos Códigos</div>";
+        $html = "<div>Mestre dos Códigos ddd</div>";
         $pdf = new PDFReporter($html);
         echo Reporter::generate($pdf);
         exit;

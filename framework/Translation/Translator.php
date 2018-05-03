@@ -10,7 +10,6 @@ class Translator
     public static function setLocale(string $locale = 'pt_BR'): string
     {
         Session::set('lang', $locale);
-        setlocale(LC_ALL, $locale);
         return $locale;
     }
 

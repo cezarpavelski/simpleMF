@@ -22,6 +22,7 @@ class Template
         }
         $this->template = new \Twig_Environment($loader, $cachePath);
         $this->template->addExtension(new TranslationExtension($this->getTranslation()));
+        $this->template->addExtension(new \Twig_Extensions_Extension_Intl());
     }
 
     public function render(string $pathTemplate, array $params = []): string
@@ -33,8 +34,10 @@ class Template
     {
         $locale = getenv('LANGUAGE');
 
-        if(Translator::getLocale()){
+        if (Translator::getLocale()) {
             $locale = Translator::getLocale();
+        } else {
+            Translator::setLocale($locale);
         }
 
         $translator = new SymfonyTranslator($locale);

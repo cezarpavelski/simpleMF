@@ -3,7 +3,36 @@
 {% block content %}
     <section class="content">
         <div class="container-fluid">
-            <h1>{% trans %}Welcome{% endtrans %}{{ a }}</h1>
+            <h1>
+                {% trans %}
+                    Welcome
+                {% endtrans %}
+                <div>{{ v|localizedcurrency('BRL', 'pt_BR')}}</div>
+                <div>{{ v|localizedcurrency('USD', 'en_US')}}</div>
+                <div>{{ v|localizedcurrency('RUB', 'ru_RU')}}</div>
+                <div>{{ v|localizedcurrency('BRL', 'en_US')}}</div>
+                <div>{{ v|localizedcurrency('BRL', 'ru_RU')}}</div>
+            </h1>
+            <h2>
+                {% transchoice count1 %}
+                    {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count1% apples
+                {% endtranschoice %}
+            </h2>
+            <h3>
+                {% transchoice count2 %}
+                    {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count2% apples
+                {% endtranschoice %}
+            </h3>
+            <h4>
+                <div>{{ date|localizeddate('medium', 'none', 'pt_BR') }}</div>
+                <div>{{ date|localizeddate('medium', 'none', 'en_US') }}</div>
+                <div>{{ date|localizeddate('medium', 'none', 'ru_RU') }}</div>
+            </h4>
+            <h4>
+                <div>{{ v|localizednumber('decimal', 'default', 'pt_BR') }}</div>
+                <div>{{ v|localizednumber('decimal', 'default', 'en_US') }}</div>
+                <div>{{ v|localizednumber('decimal', 'default', 'ru_RU') }}</div>
+            </h4>
         </div>
     </section>
 {% endblock content %}
