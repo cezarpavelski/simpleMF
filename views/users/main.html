@@ -11,6 +11,14 @@
                     <a href="/pdf" class="btn btn-default buttons-pdf buttons-html5 btn-sm" tabindex="1">
                         <span>PDF</span>
                     </a>
+					<form action="/users/import" method="POST" enctype="multipart/form-data" class="navbar-form navbar-right" style="margin: 0px">
+						<label class="btn btn-default btn-sm" for="file-selector1">
+	                        <input id="file-selector1" type="file" name="file" style="display:none;" onchange="$('#upload-file-info').html($(this).val()); $('#btn-file-info').show()">
+	                        Import CSV
+	                    </label>
+						<span class="label label-default" id="upload-file-info"></span>
+						<input class="btn btn-sm btn-accent" type="submit" value="Send" style="display: none" id="btn-file-info">
+					</form>
                 </div>
             </div>
             <div class="row">

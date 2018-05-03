@@ -35,7 +35,9 @@ class User
 
     public function import(): array
     {
-        if (($handle = fopen(__DIR__."/../../mocks/file1.csv", "r")) !== FALSE) {
+        $fileName = 'file_import_'.strtotime('now').'.csv';
+        move_uploaded_file($_FILES["file"]["tmp_name"], __DIR__."/../../storage/reports/".$fileName);
+        if (($handle = fopen(__DIR__."/../../storage/reports/".$fileName, "r")) !== FALSE) {
             $flag = false;
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 if (!empty($flag)) {
