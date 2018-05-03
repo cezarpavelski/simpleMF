@@ -27,6 +27,29 @@ class User
         throw new AuthenticationException("User not found", 1);
     }
 
+    public function list(): array
+    {
+        $user = new UserEntity();
+        return $user->findAll();
+    }
+
+    public function import(): array
+    {
+        if (($handle = fopen(__DIR__."/../../mocks/file1.csv", "r")) !== FALSE) {
+            $flag = false;
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                if (!empty($flag)) {
+                    $user = new UserEntity(NULL, $data[0], $data[1], $data[2], $data[3]);
+                    $user->insert();
+                }
+                $flag = true;
+            }
+        }
+        fclose($handle);
+        $user = new UserEntity();
+        return $user->findAll();
+    }
+
     public function validateSession(): bool
     {
         if(Session::get('user')){

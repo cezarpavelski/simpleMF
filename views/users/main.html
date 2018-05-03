@@ -1,0 +1,40 @@
+{% extends "./main.html" %}
+
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="text-right row">
+                <div class="dt-buttons btn-group">
+                    <a href="/csv" class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0">
+                        <span>CSV</span>
+                    </a>
+                    <a href="/pdf" class="btn btn-default buttons-pdf buttons-html5 btn-sm" tabindex="1">
+                        <span>PDF</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                    {% for user in users %}
+                        <tr>
+                            <td>
+                                {{ user.id }}
+                            </td>
+                            <td>
+                                {{ user.name }}
+                            </td>
+                            <td>
+                                {{ user.email }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

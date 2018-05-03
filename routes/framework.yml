@@ -54,6 +54,20 @@ route9:
     options:
         utf8: true
 
+route10:
+    path:     /users/list
+    defaults: { _controller: '\Framework\Controllers\Commons::list' }
+    methods: [GET]
+    options:
+        utf8: true
+
+route11:
+    path:     /users/import
+    defaults: { _controller: '\Framework\Controllers\Commons::import' }
+    methods: [GET]
+    options:
+        utf8: true
+
 route50:
     path:     /{table}
     defaults: { _controller: '\Framework\Controllers\Pages::new' }

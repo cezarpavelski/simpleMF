@@ -29,6 +29,18 @@ class Commons extends BaseController
         echo self::render('home/main.html');
     }
 
+    public static function import(): void
+    {
+        $users = UserService::import();
+        echo self::render('users/main.html', ['users' => $users]);
+    }
+
+    public static function list(): void
+    {
+        $users = UserService::list();
+        echo self::render('users/main.html', ['users' => $users]);
+    }
+
     public static function scriptKey(): void
     {
         UserService::new();
@@ -54,7 +66,7 @@ class Commons extends BaseController
 
     public static function generatePDF(): void
     {
-        $html = "<div>Mestre dos Códigos ddd</div>";
+        $html = json_encode(UserService::list(), true);
         $pdf = new PDFReporter($html);
         echo Reporter::generate($pdf);
         exit;
@@ -62,12 +74,20 @@ class Commons extends BaseController
 
     public static function generateCSV(): void
     {
+
+        foreach (UserService::list() as $user) {
+            $array[] = [
+                $user->id,
+                $user->name,
+                $user->email,
+                $user->password,
+                $user->created_at
+            ];
+        }
+
         $csv = new CSVReporter(
-            ['ID', 'Name'],
-            [
-                [1, 'Cezar'],
-                [2, 'Pavelski']
-            ],
+            ['ID', 'Name', 'Email', 'Password', 'Created'],
+            $array,
             true
         );
         echo Reporter::generate($csv);
