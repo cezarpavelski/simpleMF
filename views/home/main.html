@@ -7,31 +7,25 @@
                 {% trans %}
                     Welcome
                 {% endtrans %}
-                <div>{{ v|localizedcurrency('BRL', 'pt_BR')}}</div>
-                <div>{{ v|localizedcurrency('USD', 'en_US')}}</div>
-                <div>{{ v|localizedcurrency('RUB', 'ru_RU')}}</div>
-                <div>{{ v|localizedcurrency('BRL', 'en_US')}}</div>
-                <div>{{ v|localizedcurrency('BRL', 'ru_RU')}}</div>
+                <div>{{ currency1 }}</div>
+                <div>{{ currency2 }}</div>
+                <div>{{ currency3 }}</div>
             </h1>
             <h2>
-                {% transchoice count1 %}
-                    {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count1% apples
-                {% endtranschoice %}
+                <div>{{ plural1 }}</div>
+                <div>{{ plural2 }}</div>
+                <div>{{ plural3 }}</div>
             </h2>
-            <h3>
-                {% transchoice count2 %}
-                    {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count2% apples
-                {% endtranschoice %}
-            </h3>
+
             <h4>
-                <div>{{ date|localizeddate('medium', 'none', 'pt_BR') }}</div>
-                <div>{{ date|localizeddate('medium', 'none', 'en_US') }}</div>
-                <div>{{ date|localizeddate('medium', 'none', 'ru_RU') }}</div>
+                <div>{{ date1 }}</div>
+                <div>{{ date2 }}</div>
+                <div>{{ date3 }}</div>
             </h4>
             <h4>
-                <div>{{ v|localizednumber('decimal', 'default', 'pt_BR') }}</div>
-                <div>{{ v|localizednumber('decimal', 'default', 'en_US') }}</div>
-                <div>{{ v|localizednumber('decimal', 'default', 'ru_RU') }}</div>
+                <div>{{ decimal1 }}</div>
+                <div>{{ decimal2 }}</div>
+                <div>{{ decimal3 }}</div>
             </h4>
         </div>
     </section>
