@@ -32,13 +32,7 @@ class Template
 
     private function getTranslation(): SymfonyTranslator
     {
-        $locale = getenv('LANGUAGE');
-
-        if (Translator::getLocale()) {
-            $locale = Translator::getLocale();
-        } else {
-            Translator::setLocale($locale);
-        }
+        $locale = Translator::getLocale();
 
         $translator = new SymfonyTranslator($locale);
         $yamlLoader = new YamlFileLoader();
