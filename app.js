@@ -18,6 +18,7 @@ io.on('connection', function (sck) {
 });
 
 subscriber.subscribe("simple:login");
+subscriber.subscribe("simple:login1");
 
 subscriber.on("message", function(channel, message) {
 	socket.broadcast.emit(channel, JSON.parse(message));

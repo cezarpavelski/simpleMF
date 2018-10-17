@@ -5,9 +5,9 @@ table: 'users'
 gallery: 0
 
 register:
-    labels: ['Name', 'Email', 'Password', 'Dolar']
-    fields: ['name', 'email', 'password', 'dolar']
-    type: ['input', 'email', 'password', 'dolar']
+    labels: ['Name', 'Email', 'Password', 'Dolar', 'Image']
+    fields: ['name', 'email', 'password', 'dolar', 'image']
+    type: ['input', 'email', 'password', 'dolar', 'image']
     plus: []
 
 list:

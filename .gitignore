@@ -1,13 +1,13 @@
+/new-sgc
 /node_modules
 /vendor
 /.idea
 /.vagrant
 env.php
 /docker/.env
-/docker/mariadb/data/*
+/docker/mariadb/data/**/*
 /docker/nginx/logs/*
-/storage/cache/*
-/storage/reports/*
+/storage/**/*
 
 !/docker/mariadb/data/.gitkeep
 !/docker/nginx/logs/.gitkeep

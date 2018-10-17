@@ -15,6 +15,8 @@ abstract class AbstractComponent
         $this->dir = $dir;
     }
 
+    abstract public static function executeExtraAction(array $params): void;
+    abstract public static function parseValue(string $value): string;
     abstract public function render(): string;
     abstract protected function getParams(): array;
 

@@ -9,6 +9,7 @@ use Framework\Auth\Authenticator;
 use Framework\Facades\Request;
 use Framework\Session\Store as Session;
 use Framework\Exceptions\AuthenticationException;
+use Framework\FileSystem\File as FileSystem;
 use StdClass;
 
 class User
@@ -35,9 +36,10 @@ class User
 
     public function import(): array
     {
-        $fileName = 'file_import_'.strtotime('now').'.csv';
-        move_uploaded_file($_FILES["file"]["tmp_name"], __DIR__."/../../storage/reports/".$fileName);
-        if (($handle = fopen(__DIR__."/../../storage/reports/".$fileName, "r")) !== FALSE) {
+        $filePath = FileSystem::upload($_FILES, 'file_import_'.strtotime('now').'.csv');
+        //$fileName = 'file_import_'.strtotime('now').'.csv';
+        // move_uploaded_file($_FILES["file"]["tmp_name"], __DIR__."/../../storage/reports/".$fileName);
+        if (($handle = fopen($filePath, "r")) !== FALSE) {
             $flag = false;
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 if (!empty($flag)) {

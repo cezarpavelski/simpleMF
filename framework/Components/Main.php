@@ -13,7 +13,17 @@ class Main
         $html = '';
         $YML = Yaml::parseFile(__DIR__.'/../../config/pages/'.$table.'.yml');
         foreach ($YML['register']['type'] as $value) {
-            $html .= ResolverComponent::resolve($value);
+            $html .= ResolverComponent::resolve($value)->render();
+        }
+
+        return $html;
+    }
+
+    public static function save(string $table, array $params): string
+    {
+        foreach ($params as $value) {
+            $component = ResolverComponent::resolve($value->type);
+            $component->executeExtraAction();
         }
 
         return $html;

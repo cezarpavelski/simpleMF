@@ -20,10 +20,20 @@ class Index extends AbstractComponent
         return $this->getHtml();
     }
 
+    public static function executeExtraAction(array $params): void
+    {
+
+    }
+
+    public static function parseValue(string $value): string
+    {
+        return $value;
+    }
+
     protected function getParams(): array
     {
         return [
-            'name' => 'dolar',
+            'name' => 'Dolar',
             'label' => 'Dolar',
             'value' => $this->getValueDolar(),
         ];

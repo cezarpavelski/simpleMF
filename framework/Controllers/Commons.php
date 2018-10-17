@@ -25,7 +25,7 @@ class Commons extends BaseController
 
     public static function socket(): void
     {
-        Broadcaster::publish('simple:login', ['username' => 'Cezar']);
+        Broadcaster::publish('simple:login', ['username' => 'Guilhermao']);
         echo self::render('home/main.html');
     }
 

@@ -1,3 +1,0 @@
-/nginx/logs/*.log
-/mariadb/data/*
-.env

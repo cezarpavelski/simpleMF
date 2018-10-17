@@ -68,6 +68,13 @@ route11:
     options:
         utf8: true
 
+route51:
+    path:     /{table}
+    defaults: { _controller: '\Framework\Controllers\Pages::save' }
+    methods: [POST]
+    options:
+        utf8: true
+        
 route50:
     path:     /{table}
     defaults: { _controller: '\Framework\Controllers\Pages::new' }
