@@ -15,9 +15,19 @@ class Request
         return !empty($_POST[$key]) ? filter_var($_POST[$key]) : null;
     }
 
-    public static function files(string $key)
+    public static function files(string $key): array
     {
         return !empty($_FILES[$key]) ? $_FILES[$key] : null;
     }
+
+	public static function server(string $key): array
+	{
+		return !empty($_SERVER[$key]) ? $_SERVER[$key] : null;
+	}
+
+	public static function cookie(string $key): array
+	{
+		return !empty($_COOKIE[$key]) ? $_COOKIE[$key] : null;
+	}
 
 }

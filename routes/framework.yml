@@ -1,6 +1,11 @@
 route1:
     path:     /
-    defaults: { _controller: '\Framework\Controllers\Commons::home' }
+    defaults: {
+        _controller: '\Framework\Controllers\Commons::home',
+        _middlewares: [
+            '\Framework\Middlewares\AuthenticationMiddleware',
+          ]
+      }
     options:
         utf8: true
 
@@ -56,7 +61,12 @@ route9:
 
 route10:
     path:     /users/list
-    defaults: { _controller: '\Framework\Controllers\Commons::list' }
+    defaults: {
+        _controller: '\Framework\Controllers\Commons::list',
+        _middlewares: [
+            '\Framework\Middlewares\AuthenticationMiddleware',
+          ]
+      }
     methods: [GET]
     options:
         utf8: true
@@ -77,6 +87,11 @@ route51:
         
 route50:
     path:     /{table}
-    defaults: { _controller: '\Framework\Controllers\Pages::new' }
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::new',
+        _middlewares: [
+            '\Framework\Middlewares\AuthenticationMiddleware',
+          ]
+      }
     options:
         utf8: true
