@@ -13,6 +13,7 @@ class CreateTableUsers extends AbstractMigration
                 `name` varchar(255) NOT NULL,
                 `email` varchar(255) NOT NULL,
                 `password` varchar(255) NOT NULL,
+                `type` enum('admin','user') NOT NULL,
                 `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY  (`id`)
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;

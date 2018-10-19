@@ -2,33 +2,31 @@
 
 namespace Framework\Controllers;
 
-use Framework\Database\DB;
-use Framework\Controllers\BaseController;
 use Framework\Services\User as UserService;
 
 class Authentication extends BaseController
 {
-    public static function login(): void
+    public static function login(): string
     {
         $userService = new UserService();
         try {
-            $userService->login();
-            echo self::render('home/main.html', [$user]);
+            $user = $userService->login();
+            return self::render([$user], 'home/main.html');
         } catch (\Exception $e) {
-            echo self::render('login.html');
+			return self::render([], 'login.html');
         }
 
     }
 
 
-    public static function show(): void
+    public static function show(): string
     {
         $userService = new UserService();
         try {
             $userService->validateSession();
-            echo self::render('home/main.html', [$user]);
+            return self::render([], 'home/main.html');
         } catch (\Exception $e) {
-            echo self::render('login.html');
+            return self::render([], 'login.html');
         }
     }
 

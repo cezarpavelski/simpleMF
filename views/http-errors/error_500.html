@@ -1,3 +1,27 @@
-<div>
-    <img src="https://httpstatusdogs.com/img/500.jpg" alt="500 internal server error">
+{% extends "./main.html" %}
+
+{% block content %}
+
+<div class="container-center md animated slideInDown">
+
+    <div class="view-header">
+        <div class="header-icon">
+            <i class="pe page-header-icon pe-7s-close-circle"></i>
+        </div>
+        <div class="header-title">
+            <h3>500</h3>
+            <small>
+                Internal server error
+            </small>
+        </div>
+    </div>
+
+    <div class="panel panel-filled">
+        <div class="panel-body">
+            Sorry, but the page you are looking for has note been found. Try checking the URL for error, then hit the refresh button on your browser or try found something else in our app.
+        </div>
+    </div>
+
 </div>
+
+{% endblock content %}

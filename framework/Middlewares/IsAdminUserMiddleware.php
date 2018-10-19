@@ -5,7 +5,7 @@ namespace Framework\Middlewares;
 use Framework\Exceptions\MiddlewareException;
 use Framework\Session\Store as Session;
 
-class AuthenticationMiddleware implements IMiddleware
+class IsAdminUserMiddleware implements IMiddleware
 {
 
 	/**
@@ -14,8 +14,10 @@ class AuthenticationMiddleware implements IMiddleware
 	 */
 	public static function execute(): bool
     {
-		if(!Session::get('user')){
-			throw new MiddlewareException("Unauthorized", 400);
+    	$user = Session::get('user');
+
+    	if (is_null($user) || !isset($user['type']) || $user['type'] != 'admin') {
+			throw new MiddlewareException("Permission Required", 403);
 		}
 
 		return true;

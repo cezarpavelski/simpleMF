@@ -13,55 +13,55 @@ use Framework\Translation\Translator;
 class Commons extends BaseController
 {
 
-    public static function home(): void
+    public static function home(): string
     {
-        echo self::render('home/main.html', [
+        return self::render([
             'v' => 3.56,
             'count1' => 1,
             'count2' => 5,
             'date' => date('Y-m-d H:i:s')
-        ]);
+        ], 'home/main.html');
     }
 
-    public static function socket(): void
+    public static function socket(): string
     {
         Broadcaster::publish('simple:login', ['username' => 'Guilhermao']);
-        echo self::render('home/main.html');
+        return self::render([], 'home/main.html');
     }
 
-    public static function import(): void
+    public static function import(): string
     {
         $users = UserService::import();
-        echo self::render('users/main.html', ['users' => $users]);
+        return self::render(['users' => $users], 'users/main.html');
     }
 
-    public static function list(): void
+    public static function list(): string
     {
         $users = UserService::list();
-        echo self::render('users/main.html', ['users' => $users]);
+        return self::render(['users' => $users], 'users/main.html');
     }
 
-    public static function scriptKey(): void
+    public static function scriptKey(): string
     {
         UserService::new();
-        echo self::render('home/main.html');
+        return self::render([],'home/main.html');
     }
 
-    public static function setLocale($lang): void
+    public static function setLocale($lang): string
     {
         Translator::setLocale($lang);
-        echo self::render('home/main.html', [
+        return self::render([
             'v' => 3.56,
             'count1' => 1,
             'count2' => 5,
             'date' => date('Y-m-d H:i:s')
-        ]);
+        ], 'home/main.html');
     }
 
-    public static function sendMail($email): void
+    public static function sendMail($email): string
     {
         UserService::recoveryPassword($email);
-        echo self::render('home/main.html');
+        return self::render([], 'home/main.html');
     }
 
     public static function generatePDF(): void

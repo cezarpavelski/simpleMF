@@ -4,6 +4,7 @@ route1:
         _controller: '\Framework\Controllers\Commons::home',
         _middlewares: [
             '\Framework\Middlewares\AuthenticationMiddleware',
+            '\Framework\Middlewares\IsAdminUserMiddleware',
           ]
       }
     options:

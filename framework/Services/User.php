@@ -37,8 +37,6 @@ class User
     public function import(): array
     {
         $filePath = FileSystem::upload($_FILES, 'file_import_'.strtotime('now').'.csv');
-        //$fileName = 'file_import_'.strtotime('now').'.csv';
-        // move_uploaded_file($_FILES["file"]["tmp_name"], __DIR__."/../../storage/reports/".$fileName);
         if (($handle = fopen($filePath, "r")) !== FALSE) {
             $flag = false;
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {

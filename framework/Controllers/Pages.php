@@ -11,15 +11,15 @@ use App\Components\Image\Index as Image;
 class Pages extends BaseController
 {
 
-    public static function new(string $table): void
+    public static function new(string $table): string
     {
-        echo self::render('components/main.html', ServicePages::new($table));
+        return self::render(ServicePages::new($table), 'components/main.html');
     }
 
-    public static function save(string $table): void
+    public static function save(string $table): string
     {
         Image::executeExtraAction(['file' => [ 'file' => Request::files('image') ] ]);
-        echo self::render('components/main.html');
+        return self::render([], 'components/main.html');
     }
 
     public static function update(string $table, int $id): void

@@ -21,6 +21,7 @@ class Router
 		$fileLocator = new FileLocator(array(__DIR__.'/../../routes'));
 		$loader = new YamlFileLoader($fileLocator);
 		$routes = $loader->load(__DIR__.'/../../routes/framework.yml');
+		$template = new Template(__DIR__.'/../../views');
 
 		try {
 			$context = new RequestContext();
@@ -33,13 +34,11 @@ class Router
 				self::executeMiddlewares($params['_middlewares']);
 			}
 
-			call_user_func_array($params['_controller'], self::getMethodParams($params));
+			echo call_user_func_array($params['_controller'], self::getMethodParams($params));
 
 		} catch (MiddlewareException $e) {
-			$template = new Template(__DIR__.'/../../views');
 			echo $template->render("http-errors/error_".$e->getCode().".html");
 		} catch (ResourceNotFoundException | ParseException $e) {
-			$template = new Template(__DIR__.'/../../views');
 			echo $template->render('http-errors/error_404.html');
 		}
 	}
