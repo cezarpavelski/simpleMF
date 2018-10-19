@@ -3,6 +3,7 @@
 namespace Framework\Routes;
 
 use Framework\Exceptions\MiddlewareException;
+use Framework\Middlewares\MiddlewareExecutor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
@@ -31,7 +32,7 @@ class Router
 			$params = $matcher->match(strtok($_SERVER['REQUEST_URI'], '?'));
 
 			if($params['_middlewares']) {
-				self::executeMiddlewares($params['_middlewares']);
+				MiddlewareExecutor::execute($params['_middlewares']);
 			}
 
 			echo call_user_func_array($params['_controller'], self::getMethodParams($params));
@@ -43,19 +44,11 @@ class Router
 		}
 	}
 
-	private function getMethodParams(array $params): array
+	private static function getMethodParams(array $params): array
 	{
 		return array_filter($params, function($key){
 			return $key != "_controller" && $key != "_route" && $key != "_middlewares";
 		}, ARRAY_FILTER_USE_KEY);
 	}
 
-	private function executeMiddlewares(array $middlewares)
-	{
-		foreach ($middlewares as $middleware) {
-			if (!$middleware::execute()) {
-				throw new MiddlewareException('Middleware not pass', 400);
-			}
-		}
-	}
 }
