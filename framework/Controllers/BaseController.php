@@ -11,7 +11,7 @@ class BaseController
 	protected static function render(array $params = [], string $pathTeplate): string
 	{
 		$json = Request::get('json');
-		if (!isset($json)) {
+		if (isset($json)) {
 			$response_code = 200;
 			return self::json($params, $response_code);
 		}

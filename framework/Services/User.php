@@ -2,7 +2,6 @@
 
 namespace Framework\Services;
 
-use PHPMailer\PHPMailer\PHPMailer;
 use Framework\Mail\Mailer;
 use Framework\Entities\User as UserEntity;
 use Framework\Auth\Authenticator;

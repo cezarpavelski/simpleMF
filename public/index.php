@@ -6,7 +6,6 @@ ini_set('max_execution_time', 10 * 60);
 require __DIR__ . '/../env.php';
 require __DIR__ . '/../vendor/autoload.php';
 
-use Framework\Templates\Template;
 use Framework\Routes\Router;
 
 ob_start();

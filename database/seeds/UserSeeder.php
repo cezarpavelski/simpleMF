@@ -13,7 +13,7 @@ class UserSeeder extends AbstractSeed
                 'name'  => 'Admin',
                 'email' => 'admin@admin.com',
                 'password' => hash('sha256', getenv('APP_KEY').'senha'),
-                'password' => 'admin',
+                'type' => 'admin',
                 'created_at' => date('Y-m-d H:i:s'),
             ]
         ];
