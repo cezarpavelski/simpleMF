@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Dolar;
+namespace Framework\Components\Dolar;
 
 use Framework\Components\IComponent;
 use Framework\Components\AbstractComponent;

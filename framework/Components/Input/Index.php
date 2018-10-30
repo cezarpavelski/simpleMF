@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Email;
+namespace Framework\Components\Input;
 
 use Framework\Components\IComponent;
 use Framework\Components\AbstractComponent;
@@ -31,9 +31,9 @@ class Index extends AbstractComponent
     protected function getParams(): array
     {
         return [
-            'name' => 'email',
-            'label' => 'Email',
-            'value' => 'email@test.com',
+            'name' => 'input',
+            'label' => 'Input',
+            'value' => 'value input',
         ];
     }
 }

@@ -2,23 +2,15 @@
 
 namespace Framework\Components;
 
-use Framework\Components\AbstractComponent;
-use App\Components\Input\Index as Input;
-use App\Components\Textarea\Index as Textarea;
-use App\Components\Email\Index as Email;
-use App\Components\Password\Index as Password;
-use App\Components\Dolar\Index as Dolar;
-use App\Components\Image\Index as Image;
-
 abstract class ResolverComponent
 {
     private const COMPONENTS_ENABLED = [
-        "input" => Input::class,
-        "textarea" => Textarea::class,
-        "email" => Email::class,
-        "password" => Password::class,
-        "dolar" => Dolar::class,
-        "image" => Image::class,
+        "input" => Input\Index::class,
+        "textarea" => Textarea\Index::class,
+        "email" => Email\Index::class,
+        "password" => Password\Index::class,
+        "dolar" => Dolar\Index::class,
+        "image" => Image\Index::class,
         "calendar" => "",
         "date" => "",
         "phone" => "",

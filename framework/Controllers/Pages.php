@@ -5,7 +5,7 @@ namespace Framework\Controllers;
 use Framework\Database\DB;
 use Framework\Services\Pages as ServicePages;
 use Framework\Facades\Request;
-use App\Components\Image\Index as Image;
+use Framework\Components\Image\Index as Image;
 
 class Pages extends BaseController
 {

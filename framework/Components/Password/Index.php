@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Input;
+namespace Framework\Components\Password;
 
 use Framework\Components\IComponent;
 use Framework\Components\AbstractComponent;
@@ -31,9 +31,9 @@ class Index extends AbstractComponent
     protected function getParams(): array
     {
         return [
-            'name' => 'input',
-            'label' => 'Input',
-            'value' => 'value input',
+            'name' => 'password',
+            'label' => 'Password',
+            'value' => 'value password',
         ];
     }
 }

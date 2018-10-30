@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Image;
+namespace Framework\Components\Image;
 
 use Framework\Components\IComponent;
 use Framework\Components\AbstractComponent;

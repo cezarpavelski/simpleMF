@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components\Password;
+namespace Framework\Components\Textarea;
 
 use Framework\Components\IComponent;
 use Framework\Components\AbstractComponent;
@@ -31,9 +31,9 @@ class Index extends AbstractComponent
     protected function getParams(): array
     {
         return [
-            'name' => 'password',
-            'label' => 'Password',
-            'value' => 'value password',
+            'name' => 'textarea',
+            'label' => 'Textarea',
+            'value' => 'value textarea',
         ];
     }
 }
