@@ -4,7 +4,6 @@ namespace Framework\Controllers;
 
 use Framework\Database\DB;
 use Framework\Services\Pages as ServicePages;
-use Framework\Controllers\BaseController;
 use Framework\Facades\Request;
 use App\Components\Image\Index as Image;
 

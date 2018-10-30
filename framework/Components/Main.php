@@ -2,7 +2,6 @@
 
 namespace Framework\Components;
 
-use Framework\Components\ResolverComponent;
 use Symfony\Component\Yaml\Yaml;
 
 class Main
@@ -19,14 +18,12 @@ class Main
         return $html;
     }
 
-    public static function save(string $table, array $params): string
+    public static function save(string $table, array $params): void
     {
         foreach ($params as $value) {
             $component = ResolverComponent::resolve($value->type);
             $component->executeExtraAction();
         }
-
-        return $html;
     }
 
 }

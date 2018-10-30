@@ -1,11 +1,7 @@
 route1:
     path:     /
     defaults: {
-        _controller: '\Framework\Controllers\Commons::home',
-        _middlewares: [
-            '\Framework\Middlewares\AuthenticationMiddleware',
-            '\Framework\Middlewares\IsAdminUserMiddleware',
-          ]
+        _controller: '\Framework\Controllers\Commons::home'
       }
     options:
         utf8: true
@@ -64,9 +60,6 @@ route10:
     path:     /users/list
     defaults: {
         _controller: '\Framework\Controllers\Commons::list',
-        _middlewares: [
-            '\Framework\Middlewares\AuthenticationMiddleware',
-          ]
       }
     methods: [GET]
     options:
@@ -90,9 +83,6 @@ route50:
     path:     /{table}
     defaults: {
         _controller: '\Framework\Controllers\Pages::new',
-        _middlewares: [
-            '\Framework\Middlewares\AuthenticationMiddleware',
-          ]
       }
     options:
         utf8: true

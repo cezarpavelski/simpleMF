@@ -10,8 +10,9 @@ class Index extends AbstractComponent
 {
     private static $fileName;
     private static $filePath;
+    private static $storagePath;
 
-    public function __construct()
+	public function __construct()
     {
         parent::__construct(__DIR__);
     }
@@ -23,10 +24,12 @@ class Index extends AbstractComponent
 
     public static function executeExtraAction(array $params): void
     {
-        self::generateName();
+		self::$storagePath = __DIR__."/../../../storage/";
+    	self::generateName();
         self::saveOriginal($params);
-        self::saveThumbnail($params);
-        self::saveGreyScale($params);
+        self::saveThumbnail();
+        self::saveGreyScale();
+        self::saveWatermark();
     }
 
     public static function parseValue(string $value): string
@@ -53,24 +56,53 @@ class Index extends AbstractComponent
         self::$filePath = File::upload($params['file'], self::$fileName);
     }
 
-    private function saveThumbnail(array $params): void
+    private function saveThumbnail(): void
     {
-        $filePath = __DIR__."/../../../storage/";
         $img = \imagecreatefromjpeg(self::$filePath);
         list($width, $height) = \getimagesize(self::$filePath);
         $imgScale = \imagecreatetruecolor(100, 100);
         \imagecopyresampled($imgScale, $img, 0, 0, 0, 0, 100, 100, $width, $height);
-        \imagejpeg($imgScale, $filePath."thumb_".self::$fileName.'.jpg', 100);
+        \imagejpeg($imgScale,self::$storagePath."thumb_".self::$fileName.'.jpg', 100);
         \imagedestroy($imgScale);
         \imagedestroy($img);
     }
 
-    private function saveGreyScale(array $params): void
+    private function saveGreyScale(): void
     {
-        $filePath = __DIR__."/../../../storage/";
         $img = \imagecreatefromjpeg(self::$filePath);
         \imagefilter($img, IMG_FILTER_GRAYSCALE);
-        \imagejpeg($img, $filePath."greyscale_".self::$fileName.'.jpg');
+        \imagejpeg($img, self::$storagePath."greyscale_".self::$fileName.'.jpg', 100);
         \imagedestroy($img);
     }
+
+    private function saveWatermark(): void
+	{
+		$watermarkPath = self::$storagePath."../config/watermark/logo.png";
+		$img = \imagecreatefromjpeg( self::$filePath);
+		$imgWatermark = \imagecreatefrompng($watermarkPath);
+		$widthWatermark = \imagesx($imgWatermark);
+		$heightWatermark = \imagesy($imgWatermark);
+		$xWatermark = \imagesx($img) - $widthWatermark - 5;
+		$yWatermark = \imagesy($img) - $heightWatermark - 5;
+
+		$background = \imagecolorallocatealpha($imgWatermark, 0, 0, 0, 127);
+		\imagefill($imgWatermark, 0, 0, $background);
+		\imagecolortransparent($imgWatermark, $background);
+
+
+		\imagecopymerge(
+			$img,
+			$imgWatermark,
+			$xWatermark,
+			$yWatermark,
+			0,
+			0,
+			$widthWatermark,
+			$heightWatermark,
+			50);
+
+		\imagejpeg($img, self::$storagePath."watermark_".self::$fileName.'.jpg',100);
+		\imagedestroy($img);
+		\imagedestroy($imgWatermark);
+	}
 }
