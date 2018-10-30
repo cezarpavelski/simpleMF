@@ -1,85 +1,25 @@
-route1:
-    path:     /
-    defaults: {
-        _controller: '\Framework\Controllers\Commons::home'
-      }
-    options:
-        utf8: true
-
-route2:
-    path:     /lang/{lang}
-    defaults: { _controller: '\Framework\Controllers\Commons::setLocale' }
-    options:
-        utf8: true
-
-route3:
-    path:     /pdf
-    defaults: { _controller: '\Framework\Controllers\Commons::generatePDF' }
-    options:
-        utf8: true
-
-route4:
-    path:     /csv
-    defaults: { _controller: '\Framework\Controllers\Commons::generateCSV' }
-    options:
-        utf8: true
-
-route5:
-    path:     /socket
-    defaults: { _controller: '\Framework\Controllers\Commons::socket' }
-    options:
-        utf8: true
-
-route6:
-    path:     /script-key
-    defaults: { _controller: '\Framework\Controllers\Commons::scriptKey' }
-    options:
-        utf8: true
-
-route7:
-    path:     /mail/{email}
-    defaults: { _controller: '\Framework\Controllers\Commons::sendMail' }
-    options:
-        utf8: true
-
-route8:
+authenticationLogin:
     path:     /login
     defaults: { _controller: '\Framework\Controllers\Authentication::login' }
     methods: [POST]
     options:
         utf8: true
 
-route9:
+authenticationShow:
     path:     /login
     defaults: { _controller: '\Framework\Controllers\Authentication::show' }
     methods: [GET]
     options:
         utf8: true
 
-route10:
-    path:     /users/list
-    defaults: {
-        _controller: '\Framework\Controllers\Commons::list',
-      }
-    methods: [GET]
-    options:
-        utf8: true
-
-route11:
-    path:     /users/import
-    defaults: { _controller: '\Framework\Controllers\Commons::import' }
-    methods: [POST]
-    options:
-        utf8: true
-
-route51:
+pagesSave:
     path:     /{table}
     defaults: { _controller: '\Framework\Controllers\Pages::save' }
     methods: [POST]
     options:
         utf8: true
         
-route50:
+pagesNew:
     path:     /{table}
     defaults: {
         _controller: '\Framework\Controllers\Pages::new',

@@ -21,6 +21,7 @@ class Router
 
 		$fileLocator = new FileLocator(array(__DIR__.'/../../routes'));
 		$loader = new YamlFileLoader($fileLocator);
+		$loader->load(__DIR__.'/../../routes/app.yml');
 		$routes = $loader->load(__DIR__.'/../../routes/framework.yml');
 		$template = new Template(__DIR__.'/../../views');
 

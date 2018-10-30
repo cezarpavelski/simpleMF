@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controllers;
+namespace App\Controllers;
 
 use Framework\Controllers\BaseController;
 use Framework\Broadcast\Broadcaster;
