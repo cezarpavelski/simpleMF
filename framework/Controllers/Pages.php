@@ -12,13 +12,16 @@ class Pages extends BaseController
 
     public static function new(string $table): string
     {
-        return self::render(ServicePages::new($table), 'components/main.html');
+        return self::render(
+        	ServicePages::new($table),
+			'components/save_form.html');
     }
 
     public static function save(string $table): string
-    {
-        Image::executeExtraAction(['file' => [ 'file' => Request::files('image') ] ]);
-        return self::render([], 'components/main.html');
+	{
+        return self::render(
+			ServicePages::save($table),
+        	'components/save_form.html');
     }
 
     public static function update(string $table, int $id): void

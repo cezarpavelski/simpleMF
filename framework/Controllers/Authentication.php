@@ -11,7 +11,7 @@ class Authentication extends BaseController
         $userService = new UserService();
         try {
             $user = $userService->login();
-            return self::render([$user], 'home/main.html');
+            return self::render([$user], 'home/save_form.html');
         } catch (\Exception $e) {
 			return self::render([], 'login.html');
         }
@@ -24,7 +24,7 @@ class Authentication extends BaseController
         $userService = new UserService();
         try {
             $userService->validateSession();
-            return self::render([], 'home/main.html');
+            return self::render([], 'home/save_form.html');
         } catch (\Exception $e) {
             return self::render([], 'login.html');
         }

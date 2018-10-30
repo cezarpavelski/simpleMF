@@ -22,10 +22,10 @@ abstract class ResolverComponent
         "url" => "",
     ];
 
-    public static function resolve(string $type): AbstractComponent
+    public static function resolve(array $config): AbstractComponent
     {
-        $class = self::COMPONENTS_ENABLED[$type];
-        $component = new $class();
+        $class = self::COMPONENTS_ENABLED[$config['type']];
+        $component = new $class($config['field'], $config['label'], 0);
         return $component;
     }
 }

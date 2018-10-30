@@ -3,22 +3,38 @@
 namespace Framework\Services;
 
 use Framework\Components\Main as MainComponents;
+use Framework\Entities\Page;
+use Framework\Facades\Request;
 
 class Pages
 {
 
     public static function new(string $table): array
     {
-        $components = MainComponents::run($table);
+        $components = MainComponents::render($table);
         return [
+            'title' => MainComponents::getTitle($table),
             'table' => $table,
-            'components' => $components
+            'components' => $components,
         ];
     }
 
-    public static function save(string $table): void
+    public static function save(string $table): array
     {
-        var_dump(DB::execute('select * from users'));
+		MainComponents::executeExtraAction($table);
+		$page = new Page($table);
+
+		foreach (MainComponents::getFields($table) as $value) {
+			$page->{$value['field']} = Request::post($value['field']);
+		}
+
+		$page->insert();
+
+		return [
+			'title' => MainComponents::getTitle($table),
+			'table' => $table,
+			'components' => '<h1>Sucesso</h1>',
+		];
     }
 
     public static function update(string $table, int $id): void

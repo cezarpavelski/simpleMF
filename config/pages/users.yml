@@ -1,17 +1,48 @@
-title: 'Page Example'
+title: 'Page Example: Users'
 
 table: 'users'
 
 gallery: 0
 
 register:
-    labels: ['Name', 'Email', 'Password', 'Dolar', 'Image']
-    fields: ['name', 'email', 'password', 'dolar', 'image']
-    type: ['input', 'email', 'password', 'dolar', 'image']
-    plus: []
+  - type: 'input'
+    label: 'Name'
+    field: 'name'
+
+  - type: 'email'
+    label: 'Email'
+    field: 'email'
+
+  - type: 'password'
+    label: 'Password'
+    field: 'password'
+
+  - type: 'dolar'
+    label: 'Dolar'
+    field: 'dolar'
+
+  - type: 'image'
+    label: 'Image'
+    field: 'image'
+
 
 list:
-    labels: ['Name', 'Email', 'Password']
-    fields: ['name', 'email', 'password']
-    type: ['input', 'email', 'password']
-    plus: []
+  - type: 'input'
+    label: 'Name'
+    field: 'name'
+
+  - type: 'email'
+    label: 'Email'
+    field: 'email'
+
+  - type: 'password'
+    label: 'Password'
+    field: 'password'
+
+  - type: 'dolar'
+    label: 'Dolar'
+    field: 'dolar'
+
+  - type: 'image'
+    label: 'Image'
+    field: 'image'

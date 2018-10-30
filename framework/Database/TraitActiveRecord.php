@@ -2,7 +2,6 @@
 
 namespace Framework\Database;
 
-use Framework\Database\ActiveRecord;
 use StdClass;
 
 trait TraitActiveRecord

@@ -2,28 +2,44 @@
 
 namespace Framework\Components;
 
+use Framework\Facades\Request;
 use Symfony\Component\Yaml\Yaml;
 
 class Main
 {
 
-    public static function run(string $table): string
+    public static function render(string $table): string
     {
         $html = '';
-        $YML = Yaml::parseFile(__DIR__.'/../../config/pages/'.$table.'.yml');
-        foreach ($YML['register']['type'] as $value) {
+        foreach (self::getFields($table) as $value) {
             $html .= ResolverComponent::resolve($value)->render();
         }
 
         return $html;
     }
 
-    public static function save(string $table, array $params): void
+    public static function executeExtraAction(string $table): void
     {
-        foreach ($params as $value) {
-            $component = ResolverComponent::resolve($value->type);
-            $component->executeExtraAction();
+		foreach (self::getFields($table) as $value) {
+            $component = ResolverComponent::resolve($value);
+            $component->executeExtraAction([
+            	'file' => [
+            		'file' => Request::files('image')
+				]
+			]);
         }
     }
+
+    public static function getFields(string $table): array
+	{
+		$YML = Yaml::parseFile(__DIR__.'/../../config/pages/'.$table.'.yml');
+		return $YML['register'];
+	}
+
+	public static function getTitle(string $table): string
+	{
+		$YML = Yaml::parseFile(__DIR__.'/../../config/pages/'.$table.'.yml');
+		return $YML['title'];
+	}
 
 }

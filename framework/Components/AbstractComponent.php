@@ -9,16 +9,28 @@ abstract class AbstractComponent
     private $dir;
     private $template;
 
+    protected $name;
+    protected $label = null;
+    protected $value = null;
+
     public function __construct(string $dir)
     {
         $this->template = new Template($dir);
         $this->dir = $dir;
     }
 
-    abstract public static function executeExtraAction(array $params): void;
+    abstract public static function executeExtraAction(?array $params): void;
     abstract public static function parseValue(string $value): string;
     abstract public function render(): string;
-    abstract protected function getParams(): array;
+
+    protected function getParams(): array
+	{
+		return [
+			'name' => $this->name,
+			'label' => $this->label,
+			'value' => 0,
+		];
+	}
 
     protected function getHtml(): string
     {

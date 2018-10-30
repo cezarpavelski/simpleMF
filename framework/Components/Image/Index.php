@@ -12,17 +12,20 @@ class Index extends AbstractComponent
     private static $filePath;
     private static $storagePath;
 
-	public function __construct()
-    {
-        parent::__construct(__DIR__);
-    }
+	public function __construct(string $name, string $label, string $value)
+	{
+		parent::__construct(__DIR__);
+		$this->name = $name;
+		$this->label = $label;
+		$this->value = $value;
+	}
 
     public function render(): string
     {
         return $this->getHtml();
     }
 
-    public static function executeExtraAction(array $params): void
+    public static function executeExtraAction(?array $params): void
     {
 		self::$storagePath = __DIR__."/../../../storage/";
     	self::generateName();
@@ -35,15 +38,6 @@ class Index extends AbstractComponent
     public static function parseValue(string $value): string
     {
         return self::$fileName;
-    }
-
-    protected function getParams(): array
-    {
-        return [
-            'name' => 'image',
-            'label' => 'Image',
-            'value' => '',
-        ];
     }
 
     private function generateName(): void

@@ -10,9 +10,12 @@ use DOMXPath;
 class Index extends AbstractComponent
 {
 
-    public function __construct()
+    public function __construct(string $name, string $label, string $value)
     {
         parent::__construct(__DIR__);
+        $this->name = $name;
+        $this->label = $label;
+        $this->value = $value;
     }
 
     public function render(): string
@@ -20,7 +23,7 @@ class Index extends AbstractComponent
         return $this->getHtml();
     }
 
-    public static function executeExtraAction(array $params): void
+    public static function executeExtraAction(?array $params): void
     {
 
     }
@@ -33,8 +36,8 @@ class Index extends AbstractComponent
     protected function getParams(): array
     {
         return [
-            'name' => 'Dolar',
-            'label' => 'Dolar',
+            'name' => $this->name,
+            'label' => $this->label,
             'value' => $this->getValueDolar(),
         ];
     }
