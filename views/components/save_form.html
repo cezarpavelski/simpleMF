@@ -4,6 +4,13 @@
     <section class="content">
         <div class="container-fluid">
             {{ include('./components/header_page.html') }}
+            {% if success is defined %}
+                {% if success %}
+                    {{ include('./components/partials/panel_success.html') }}
+                {% else %}
+                    {{ include('./components/partials/panel_error.html') }}
+                {% endif %}
+            {% endif %}
             <div class="row">
                 <div class="col-lg-12">
                     <form action="/{{ table }}" method="POST" enctype="multipart/form-data">

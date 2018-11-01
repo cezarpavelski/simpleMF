@@ -6,7 +6,6 @@ use Framework\Components\Main as MainComponents;
 use Framework\Database\DB;
 use Framework\Entities\Page;
 use Framework\Facades\Request;
-use Framework\Entities\User as UserEntity;
 
 class Pages
 {
@@ -29,13 +28,17 @@ class Pages
 		foreach (MainComponents::getFields($table) as $value) {
 			$page->{$value['field']} = Request::post($value['field']);
 		}
-		$page->insert();
 
-		return [
-			'title' => MainComponents::getTitle($table),
-			'table' => $table,
-			'components' => '<h1>Sucesso</h1>',
-		];
+		$return = self::new($table);
+
+		try {
+			$page->insert();
+			$return['success'] = true;
+		} catch (\PDOException $e) {
+			$return['success'] = false;
+		}
+
+		return $return;
     }
 
     public static function update(string $table, int $id): void

@@ -25,41 +25,8 @@
 					</table>
 				</div>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="col-xs-12">
-							<div class="dataTables_paginate paging_simple_numbers pull-right">
-								<ul class="pagination">
+				{{ include('./components/partials/pagination.html') }}
 
-									{% if records['previous'] %}
-										<li class="paginate_button previous"">
-											<a href="{{ records['previous'] }}" aria-controls="tableExample2" data-dt-idx="0" tabindex="0">Previous</a>
-										</li>
-									{% endif %}
-
-									{% for i in 1..records['total_pages'] %}
-										{% if records['page_active'] == i %}
-											<li class="paginate_button active">
-												<a href="#" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
-											</li>
-										{% else %}
-											<li class="paginate_button">
-												<a href="?page={{ i }}" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
-											</li>
-										{% endif %}
-									{% endfor %}
-
-									{% if records['next'] %}
-										<li class="paginate_button next">
-											<a href="{{ records['next'] }}" data-dt-idx="{{ records['total_pages']+1 }}" tabindex="{{ records['total_pages']+1 }}">Next</a>
-										</li>
-									{% endif %}
-
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		{% else %}
 			<div class="panel-body">
