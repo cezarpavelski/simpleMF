@@ -14,14 +14,14 @@ class Pages extends BaseController
     {
         return self::render(
         	ServicePages::new($table),
-			'components/save_form.html');
+			'pages/save_form.html');
     }
 
     public static function save(string $table): string
 	{
         return self::render(
 			ServicePages::save($table),
-        	'components/save_form.html');
+        	'pages/save_form.html');
     }
 
     public static function update(string $table, int $id): void
@@ -43,7 +43,7 @@ class Pages extends BaseController
     {
 		return self::render(
 			ServicePages::list($table),
-			'components/list_page.html');
+			'pages/list_page.html');
     }
 
 }

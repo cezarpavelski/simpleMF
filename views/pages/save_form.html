@@ -3,12 +3,12 @@
 {% block content %}
     <section class="content">
         <div class="container-fluid">
-            {{ include('./components/header_page.html') }}
+            {{ include('./pages/partials/header_page.html') }}
             {% if success is defined %}
                 {% if success %}
-                    {{ include('./components/partials/panel_success.html') }}
+                    {{ include('./pages/partials/panel_success.html') }}
                 {% else %}
-                    {{ include('./components/partials/panel_error.html') }}
+                    {{ include('./pages/partials/panel_error.html') }}
                 {% endif %}
             {% endif %}
             <div class="row">

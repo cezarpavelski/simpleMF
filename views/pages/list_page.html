@@ -3,7 +3,7 @@
 {% block content %}
     <section class="content">
         <div class="container-fluid">
-            {{ include('./components/header_page.html') }}
+            {{ include('./pages/partials/header_page.html') }}
 			{% if records['records'] %}
 				<div class="row table-responsive">
 					<table class="table table-hover table-striped">
@@ -12,6 +12,8 @@
 							{% for column in fields %}
 								<th>{{ column.label }}</th>
 							{% endfor %}
+							<th></th>
+							<th></th>
 						</tr>
 
 						{% for record in records['records'] %}
@@ -20,12 +22,18 @@
 								{% for column in fields %}
 									<td>{{ attribute(record, column.field) }}</td>
 								{% endfor %}
+								<td>
+									<a href="#"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
+								</td>
+								<td>
+									<a href="#"><i class="pe-7s-trash text-danger" style="font-size: 24px"></i></a>
+								</td>
 							</tr>
 						{% endfor %}
 					</table>
 				</div>
 
-				{{ include('./components/partials/pagination.html') }}
+				{{ include('./pages/partials/pagination.html') }}
 
 			</div>
 		{% else %}

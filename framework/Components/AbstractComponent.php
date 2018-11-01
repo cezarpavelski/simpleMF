@@ -28,7 +28,7 @@ abstract class AbstractComponent
 		return [
 			'name' => $this->name,
 			'label' => $this->label,
-			'value' => 0,
+			'value' => '',
 		];
 	}
 
