@@ -2,9 +2,7 @@
 
 namespace Framework\Database;
 
-use Framework\Database\Connection;
 use PDO;
-use StdClass;
 
 class DB
 {

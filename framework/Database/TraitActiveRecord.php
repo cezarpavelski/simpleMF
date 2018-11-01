@@ -2,13 +2,11 @@
 
 namespace Framework\Database;
 
-use StdClass;
-
 trait TraitActiveRecord
 {
     private $active_record;
 
-    public function find(int $id): StdClass
+    public function find(int $id): \StdClass
     {
         $this->active_record = new ActiveRecord($this, $this->table);
         return $this->active_record->find($id);
@@ -37,5 +35,11 @@ trait TraitActiveRecord
         $this->active_record = new ActiveRecord($this, $this->table);
         return $this->active_record->findAll();
     }
+
+	public function paginate(int $count, string $where = '1=1'): array
+	{
+		$this->active_record = new ActiveRecord($this, $this->table);
+		return $this->active_record->paginate($count, $where);
+	}
 
 }

@@ -6,6 +6,7 @@ use Framework\Components\Main as MainComponents;
 use Framework\Database\DB;
 use Framework\Entities\Page;
 use Framework\Facades\Request;
+use Framework\Entities\User as UserEntity;
 
 class Pages
 {
@@ -54,11 +55,13 @@ class Pages
 
     public static function list(string $table): array
     {
+		$page = new Page($table);
+
 		return [
 			'title' => MainComponents::getTitle($table),
 			'fields' => MainComponents::getFields($table),
 			'table' => $table,
-			'registers' => DB::execute("select * from $table"),
+			'records' => $page->paginate(getenv('RECORDS_PAGINATION')),
 		];
     }
 

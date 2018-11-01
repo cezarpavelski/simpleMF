@@ -2,6 +2,7 @@
 
 namespace Framework\Database;
 
+use Framework\Facades\Request;
 use PDO;
 use PDOException;
 use ReflectionObject;
@@ -66,6 +67,30 @@ class ActiveRecord implements IActiveRecord
         $rows = $sth->fetchAll(PDO::FETCH_OBJ);
         return count($rows) > 0 ? $rows : [];
     }
+
+    public function paginate(int $count, string $where): array
+	{
+		$count_total = DB::execute("SELECT count(*) as total FROM $this->table");
+		$page = Request::get('page') || Request::get('page') > 0  ? Request::get('page') : 1;
+
+		$records = $this->findWhere("? LIMIT ".($page-1)*$count.", $count", [$where]);
+		$url_info = parse_url($_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+		$url_next = $url_info['scheme'].'://'.$url_info['host'].$url_info['path'].'?page='.($page+1);
+		$url_previous = $url_info['scheme'].'://'.$url_info['host'].$url_info['path'].'?page='.($page-1);
+
+		if (count($records) === 0) {
+			return [];
+		}
+
+		return [
+			'total' => $count_total[0]->total,
+			'total_pages' => ceil($count_total[0]->total/$count),
+			'page_active' => $page,
+			'previous' => ($page-1 > 0) ? $url_previous : null,
+			'next' => ($count_total[0]->total > 0 && ($page * $count) < $count_total[0]->total) ? $url_next : null,
+			'records' => $records,
+		];
+	}
 
     public function delete(int $id): bool
 	{
