@@ -1,6 +1,6 @@
-title: 'Users'
+title: 'Component guilhermao'
 
-table: 'users'
+table: 'components'
 
 gallery: 0
 
@@ -13,17 +13,10 @@ register:
     label: 'Email'
     field: 'email'
 
-  - type: 'password'
-    label: 'Password'
-    field: 'password'
+  - type: 'dolar'
+    label: 'Dolar'
+    field: 'dolar'
 
-  - type: 'input'
-    label: 'Type'
-    field: 'type'
-
-  - type: 'input'
-    label: 'Created At'
-    field: 'created_at'
 
 list:
   - type: 'input'
@@ -38,6 +31,10 @@ list:
     label: 'Password'
     field: 'password'
 
-  - type: 'input'
-    label: 'Created At'
-    field: 'created_at'
+  - type: 'dolar'
+    label: 'Dolar'
+    field: 'dolar'
+
+  - type: 'image'
+    label: 'Image'
+    field: 'image'

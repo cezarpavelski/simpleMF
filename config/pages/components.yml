@@ -1,6 +1,6 @@
-title: 'Users'
+title: 'Page Example: Components'
 
-table: 'users'
+table: 'components'
 
 gallery: 0
 
@@ -17,13 +17,14 @@ register:
     label: 'Password'
     field: 'password'
 
-  - type: 'input'
-    label: 'Type'
-    field: 'type'
+  - type: 'dolar'
+    label: 'Dolar'
+    field: 'dolar'
 
-  - type: 'input'
-    label: 'Created At'
-    field: 'created_at'
+  - type: 'image'
+    label: 'Image'
+    field: 'image'
+
 
 list:
   - type: 'input'
@@ -38,6 +39,10 @@ list:
     label: 'Password'
     field: 'password'
 
-  - type: 'input'
-    label: 'Created At'
-    field: 'created_at'
+  - type: 'dolar'
+    label: 'Dolar'
+    field: 'dolar'
+
+  - type: 'image'
+    label: 'Image'
+    field: 'image'

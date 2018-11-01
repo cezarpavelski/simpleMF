@@ -18,11 +18,20 @@ pagesSave:
     methods: [POST]
     options:
         utf8: true
-        
-pagesNew:
+
+pagesList:
     path:     /{table}
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::list',
+      }
+    options:
+        utf8: true
+
+pagesNew:
+    path:     /{table}/new
     defaults: {
         _controller: '\Framework\Controllers\Pages::new',
       }
     options:
         utf8: true
+

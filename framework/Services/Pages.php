@@ -3,6 +3,7 @@
 namespace Framework\Services;
 
 use Framework\Components\Main as MainComponents;
+use Framework\Database\DB;
 use Framework\Entities\Page;
 use Framework\Facades\Request;
 
@@ -27,7 +28,6 @@ class Pages
 		foreach (MainComponents::getFields($table) as $value) {
 			$page->{$value['field']} = Request::post($value['field']);
 		}
-
 		$page->insert();
 
 		return [
@@ -52,9 +52,14 @@ class Pages
         var_dump(DB::execute('select * from users'));
     }
 
-    public static function list(string $table): void
+    public static function list(string $table): array
     {
-        var_dump(DB::execute('select * from users'));
+		return [
+			'title' => MainComponents::getTitle($table),
+			'fields' => MainComponents::getFields($table),
+			'table' => $table,
+			'registers' => DB::execute("select * from $table"),
+		];
     }
 
 }

@@ -2,11 +2,8 @@
 
 namespace Framework\Database;
 
-use Framework\Database\Connection;
-use Framework\Database\IActiveRecord;
 use PDO;
 use PDOException;
-use StdClass;
 use ReflectionObject;
 use ReflectionProperty;
 
@@ -23,12 +20,12 @@ class ActiveRecord implements IActiveRecord
         $this->table = $table;
     }
 
-    public function find(int $id): StdClass
+    public function find(int $id): \StdClass
     {
         $sth = $this->connection->prepare("SELECT * FROM $this->table WHERE id = ?");
         $sth->execute([$id]);
         $row = $sth->fetchObject();
-        return $row ? $row : new StdClass;
+        return $row ? $row : new \StdClass;
     }
 
     public function findWhere(string $where, array $params): array
@@ -41,8 +38,9 @@ class ActiveRecord implements IActiveRecord
 
     public function insert(): bool
     {
-        $placeholder = $this->placeholderInsert();
-        try {
+        $placeholder = '?,'.$this->placeholderInsert();
+		array_unshift($this->params, NULL);
+		try {
             $sth = $this->connection->prepare("INSERT INTO $this->table VALUES ($placeholder)");
             return $sth->execute($this->params);
         } catch (PDOException $e) {
@@ -69,7 +67,10 @@ class ActiveRecord implements IActiveRecord
         return count($rows) > 0 ? $rows : [];
     }
 
-    // public function delete($id);
+    public function delete(int $id): bool
+	{
+		// TODO: Implement delete() method.
+	}
 
     private function placeholderInsert(): string
     {

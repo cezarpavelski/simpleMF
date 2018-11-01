@@ -20,31 +20,31 @@ class Commons extends BaseController
             'count1' => 1,
             'count2' => 5,
             'date' => date('Y-m-d H:i:s')
-        ], 'home/save_form.html');
+        ], 'home/main.html');
     }
 
     public static function socket(): string
     {
         Broadcaster::publish('simple:login', ['username' => 'Guilhermao']);
-        return self::render([], 'home/save_form.html');
+        return self::render([], 'home/main.html');
     }
 
     public static function import(): string
     {
         $users = UserService::import();
-        return self::render(['users' => $users], 'users/save_form.html');
+        return self::render(['users' => $users], 'users/main.html');
     }
 
     public static function list(): string
     {
         $users = UserService::list();
-        return self::render(['users' => $users], 'users/save_form.html');
+        return self::render(['users' => $users], 'users/main.html');
     }
 
     public static function scriptKey(): string
     {
         UserService::new();
-        return self::render([],'home/save_form.html');
+        return self::render([],'home/main.html');
     }
 
     public static function setLocale($lang): string
@@ -55,13 +55,13 @@ class Commons extends BaseController
             'count1' => 1,
             'count2' => 5,
             'date' => date('Y-m-d H:i:s')
-        ], 'home/save_form.html');
+        ], 'home/main.html');
     }
 
     public static function sendMail($email): string
     {
         UserService::recoveryPassword($email);
-        return self::render([], 'home/save_form.html');
+        return self::render([], 'home/main.html');
     }
 
     public static function generatePDF(): void

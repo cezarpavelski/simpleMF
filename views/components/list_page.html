@@ -1,0 +1,59 @@
+{% extends "./main.html" %}
+
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            {{ include('./components/header_page.html') }}
+            <div class="row table-responsive">
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <th>Id</th>
+                        {% for column in fields %}
+                            <th>{{ column.label }}</th>
+                        {% endfor %}
+                    </tr>
+
+                    {% for register in registers %}
+                        <tr>
+                            <td>{{ register.id }}</td>
+                            {% for column in fields %}
+                                <td>{{ attribute(register, column.field) }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="row">
+				<div class="col-xs-12">
+					<div class="col-xs-12">
+						<div class="dataTables_paginate paging_simple_numbers pull-right">
+							<ul class="pagination">
+								<li class="paginate_button previous disabled"">
+									<a href="#" aria-controls="tableExample2" data-dt-idx="0" tabindex="0">Previous</a>
+								</li>
+								<li class="paginate_button active">
+									<a href="#" aria-controls="tableExample2" data-dt-idx="1" tabindex="0">1</a>
+								</li>
+								<li class="paginate_button ">
+									<a href="#" aria-controls="tableExample2" data-dt-idx="2" tabindex="0">2</a>
+								</li>
+								<li class="paginate_button ">
+									<a href="#" aria-controls="tableExample2" data-dt-idx="3" tabindex="0">3</a>
+								</li>
+								<li class="paginate_button ">
+									<a href="#" aria-controls="tableExample2" data-dt-idx="4" tabindex="0">4</a>
+								</li>
+								<li class="paginate_button ">
+									<a href="#" aria-controls="tableExample2" data-dt-idx="5" tabindex="0">5</a>
+								</li>
+								<li class="paginate_button next" id="tableExample2_next">
+									<a href="#" aria-controls="tableExample2" data-dt-idx="6" tabindex="0">Next</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

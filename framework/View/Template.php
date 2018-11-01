@@ -14,15 +14,16 @@ class Template
     public function __construct(string $dir)
     {
         $loader = new \Twig_Loader_Filesystem($dir);
-        $cachePath = array();
+		$extensions = [];
         if(getenv('CACHE_TEMPLATE') == 'true') {
-            $cachePath = array(
-                'cache' => __DIR__.'/../../storage/cache',
-            );
+			$extensions['cache'] = __DIR__.'/../../storage/cache';
         }
-        $this->template = new \Twig_Environment($loader, $cachePath);
+        $extensions['debug'] = true;
+
+        $this->template = new \Twig_Environment($loader, $extensions);
         $this->template->addExtension(new TranslationExtension($this->getTranslation()));
         $this->template->addExtension(new \Twig_Extensions_Extension_Intl());
+		$this->template->addExtension(new \Twig_Extension_Debug());
     }
 
     public function render(string $pathTemplate, array $params = []): string

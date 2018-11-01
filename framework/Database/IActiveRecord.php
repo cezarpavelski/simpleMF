@@ -10,6 +10,6 @@ interface IActiveRecord
     public function update(): bool;
     public function findAll(): array;
     public function findWhere(string $where, array $params): array;
-    // public function delete(int $id);
+    public function delete(int $id);
 
 }

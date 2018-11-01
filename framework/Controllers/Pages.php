@@ -39,9 +39,11 @@ class Pages extends BaseController
         var_dump(DB::execute('select * from users'));
     }
 
-    public static function list(string $table): void
+    public static function list(string $table): string
     {
-        var_dump(DB::execute('select * from users'));
+		return self::render(
+			ServicePages::list($table),
+			'components/list_page.html');
     }
 
 }

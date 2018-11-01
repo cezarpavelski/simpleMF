@@ -12,7 +12,7 @@ abstract class ResolverComponent
         "dolar" => Dolar\Index::class,
         "image" => Image\Index::class,
         "calendar" => "",
-        "date" => "",
+        "date" => Date\Index::class,
         "phone" => "",
         "cpf" => "",
         "cnpj" => "",
