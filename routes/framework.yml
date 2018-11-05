@@ -50,3 +50,11 @@ pagesUpdate:
     options:
         utf8: true
 
+pagesDelete:
+    path:     /{table}/{id}/delete
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::delete',
+      }
+    options:
+        utf8: true
+

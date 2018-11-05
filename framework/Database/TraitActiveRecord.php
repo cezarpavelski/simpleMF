@@ -42,4 +42,10 @@ trait TraitActiveRecord
 		return $this->active_record->paginate($count, $where);
 	}
 
+	public function delete(int $id): bool
+	{
+		$this->active_record = new ActiveRecord($this, $this->table);
+		return $this->active_record->delete($id);
+	}
+
 }

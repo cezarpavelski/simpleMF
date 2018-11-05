@@ -38,9 +38,11 @@ class Pages extends BaseController
 			'pages/update_form.html');
 	}
 
-    public static function delete(string $table, int $id): void
+    public static function delete(string $table, int $id): string
     {
-        var_dump(DB::execute('select * from users'));
+		return self::render(
+			ServicePages::delete($table, $id),
+			'pages/list_page.html');
     }
 
     public static function view(string $table, int $id): void

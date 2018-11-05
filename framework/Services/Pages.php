@@ -79,9 +79,19 @@ class Pages
 
 	}
 
-    public static function delete(string $table, int $id): void
+    public static function delete(string $table, int $id): array
     {
-        var_dump(DB::execute('select * from users'));
+		$page = new Page($table);
+
+		try {
+			$page->delete($id);
+			$return = self::list($table);
+			$return['success'] = true;
+		} catch (\PDOException $e) {
+			$return['success'] = false;
+		}
+
+		return $return;
     }
 
     public static function view(string $table, int $id): void

@@ -4,6 +4,15 @@
     <section class="content">
         <div class="container-fluid">
             {{ include('./pages/partials/header_page.html') }}
+
+			{% if success is defined %}
+				{% if success %}
+					{{ include('./pages/partials/panel_success_delete.html') }}
+				{% else %}
+					{{ include('./pages/partials/panel_error_delete.html') }}
+				{% endif %}
+			{% endif %}
+
 			{% if records['records'] %}
 				<div class="row table-responsive">
 					<table class="table table-hover table-striped">
@@ -23,10 +32,10 @@
 									<td>{{ attribute(record, column.field) }}</td>
 								{% endfor %}
 								<td>
-									<a href="#"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
+									<a href="/{{ table }}/{{ record.id }}/edit"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
 								</td>
 								<td>
-									<a href="#"><i class="pe-7s-trash text-danger" style="font-size: 24px"></i></a>
+									<a href="/{{ table }}/{{ record.id }}/delete"><i class="pe-7s-trash text-danger" style="font-size: 24px"></i></a>
 								</td>
 							</tr>
 						{% endfor %}

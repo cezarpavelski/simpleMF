@@ -93,7 +93,12 @@ class ActiveRecord implements IActiveRecord
 
     public function delete(int $id): bool
 	{
-		// TODO: Implement delete() method.
+		try {
+			$sth = $this->connection->prepare("DELETE FROM $this->table WHERE id = ?");
+			return $sth->execute([$id]);
+		} catch (PDOException $e) {
+			echo 'delete: '.$e->getMessage();exit;
+		}
 	}
 
     private function placeholderInsert(): string
