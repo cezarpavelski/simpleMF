@@ -35,3 +35,18 @@ pagesNew:
     options:
         utf8: true
 
+pagesEdit:
+    path:     /{table}/{id}/edit
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::edit',
+      }
+    options:
+        utf8: true
+
+pagesUpdate:
+    path:     /{table}/{id}
+    defaults: { _controller: '\Framework\Controllers\Pages::update' }
+    methods: [POST]
+    options:
+        utf8: true
+

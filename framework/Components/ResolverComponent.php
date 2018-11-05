@@ -25,7 +25,7 @@ abstract class ResolverComponent
     public static function resolve(array $config): AbstractComponent
     {
         $class = self::COMPONENTS_ENABLED[$config['type']];
-        $component = new $class($config['field'], $config['label'], 0);
+        $component = new $class($config['field'], $config['label'], $config['value'] ?? '');
         return $component;
     }
 }

@@ -39,8 +39,7 @@ class ActiveRecord implements IActiveRecord
 
     public function insert(): bool
     {
-        $placeholder = '?,'.$this->placeholderInsert();
-		array_unshift($this->params, NULL);
+        $placeholder = $this->placeholderInsert();
 		try {
             $sth = $this->connection->prepare("INSERT INTO $this->table VALUES ($placeholder)");
             return $sth->execute($this->params);

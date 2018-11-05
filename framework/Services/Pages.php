@@ -25,6 +25,8 @@ class Pages
 		MainComponents::executeExtraAction($table);
 		$page = new Page($table);
 
+		$page->id = null;
+
 		foreach (MainComponents::getFields($table) as $value) {
 			$page->{$value['field']} = Request::post($value['field']);
 		}
@@ -41,10 +43,41 @@ class Pages
 		return $return;
     }
 
-    public static function update(string $table, int $id): void
-    {
-        var_dump(DB::execute('select * from users'));
-    }
+	public static function edit(string $table, int $id): array
+	{
+		$components = MainComponents::render($table, $id);
+		return [
+			'title' => MainComponents::getTitle($table),
+			'table' => $table,
+			'id' => $id,
+			'components' => $components,
+		];
+	}
+
+	public static function update(string $table, int $id): array
+	{
+
+		MainComponents::executeExtraAction($table);
+		$page = new Page($table);
+
+		$page->id = $id;
+
+		foreach (MainComponents::getFields($table) as $value) {
+			$page->{$value['field']} = Request::post($value['field']);
+		}
+
+		$return = self::edit($table, $id);
+
+		try {
+			$page->update();
+			$return['success'] = true;
+		} catch (\PDOException $e) {
+			$return['success'] = false;
+		}
+
+		return $return;
+
+	}
 
     public static function delete(string $table, int $id): void
     {

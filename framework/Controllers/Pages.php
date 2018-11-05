@@ -24,10 +24,19 @@ class Pages extends BaseController
         	'pages/save_form.html');
     }
 
-    public static function update(string $table, int $id): void
+    public static function update(string $table, int $id): string
     {
-        var_dump(DB::execute('select * from users'));
+		return self::render(
+			ServicePages::update($table, $id),
+			'pages/update_form.html');
     }
+
+	public static function edit(string $table, int $id): string
+	{
+		return self::render(
+			ServicePages::edit($table, $id),
+			'pages/update_form.html');
+	}
 
     public static function delete(string $table, int $id): void
     {
