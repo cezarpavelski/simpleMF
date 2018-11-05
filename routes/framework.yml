@@ -23,6 +23,7 @@ pagesList:
     path:     /{table}
     defaults: {
         _controller: '\Framework\Controllers\Pages::list',
+        _middlewares: ['\Framework\Middlewares\AuthenticationJWTMiddleware'],
       }
     options:
         utf8: true
