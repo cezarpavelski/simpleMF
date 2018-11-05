@@ -10,12 +10,15 @@ class BaseController
 
 	protected static function render(array $params = [], string $pathTeplate): string
 	{
-		$json = Request::get('json');
-		if (isset($json)) {
-			$response_code = 200;
-			return self::json($params, $response_code);
+		$http_accept = Request::server('HTTP_ACCEPT');
+
+		if ($http_accept === 'application/json') {
+			return self::json($params, 200);
+		} elseif (preg_match("/text\/html/", $http_accept)) {
+			return self::html($params, $pathTeplate);
+		} else {
+			return self::json(['Not Acceptable'], 406);
 		}
-		return self::html($params, $pathTeplate);
 
 	}
 

@@ -20,12 +20,12 @@ class Request
         return isset($_FILES[$key]) ? $_FILES[$key] : null;
     }
 
-	public static function server(string $key): ?array
+	public static function server(string $key): ?string
 	{
 		return isset($_SERVER[$key]) ? $_SERVER[$key] : null;
 	}
 
-	public static function cookie(string $key): ?array
+	public static function cookie(string $key): ?string
 	{
 		return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
 	}
