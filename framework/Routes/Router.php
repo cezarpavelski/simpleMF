@@ -3,6 +3,8 @@
 namespace Framework\Routes;
 
 use Framework\Exceptions\MiddlewareException;
+use Framework\Middlewares\AuthenticationJWTMiddleware;
+use Framework\Middlewares\AuthenticationMiddleware;
 use Framework\Middlewares\MiddlewareExecutor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -31,9 +33,9 @@ class Router
 			$matcher = new UrlMatcher($routes, $context);
 
 			$params = $matcher->match(strtok($_SERVER['REQUEST_URI'], '?'));
-			if($params['_middlewares']) {
-				MiddlewareExecutor::execute($params['_middlewares']);
-			}
+
+			self::executeAuth();
+			self::executeMiddlewares($params);
 
 			echo call_user_func_array($params['_controller'], self::getMethodParams($params));
 
@@ -49,6 +51,28 @@ class Router
 		return array_filter($params, function($key){
 			return $key != "_controller" && $key != "_route" && $key != "_middlewares";
 		}, ARRAY_FILTER_USE_KEY);
+	}
+
+	private static function executeMiddlewares(array $params): void
+	{
+		if($params['_middlewares']) {
+			MiddlewareExecutor::execute($params['_middlewares']);
+		}
+	}
+
+	private static function executeAuth(): void
+	{
+		$auth = getenv('AUTHENTICATION') ?? 'none';
+
+		switch ($auth) {
+			case 'jwt':
+				AuthenticationJWTMiddleware::execute();
+				break;
+			case 'session':
+				AuthenticationMiddleware::execute();
+				break;
+		}
+
 	}
 
 }
