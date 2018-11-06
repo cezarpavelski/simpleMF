@@ -3,7 +3,6 @@
 namespace Framework\Services;
 
 use Framework\Components\Main as MainComponents;
-use Framework\Database\DB;
 use Framework\Entities\Page;
 use Framework\Facades\Request;
 
@@ -92,11 +91,6 @@ class Pages
 		}
 
 		return $return;
-    }
-
-    public static function view(string $table, int $id): void
-    {
-        var_dump(DB::execute('select * from users'));
     }
 
     public static function list(string $table): array

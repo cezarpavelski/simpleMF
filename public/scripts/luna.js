@@ -44,4 +44,9 @@ $(document).ready(function () {
         var hpanel = $(event.target).closest('div.panel');
         hpanel.remove();
     });
+
+    $('.btn-confirm-delete').on('click', function(event){
+        event.preventDefault();
+        $("#confirm-delete-yes").attr('href', $(this).data('link'));
+    });
 });

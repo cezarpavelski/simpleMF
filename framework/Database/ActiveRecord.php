@@ -84,6 +84,7 @@ class ActiveRecord implements IActiveRecord
 		return [
 			'total' => $count_total[0]->total,
 			'total_pages' => ceil($count_total[0]->total/$count),
+			'records_per_page' => $count,
 			'page_active' => $page,
 			'previous' => ($page-1 > 0) ? $url_previous : null,
 			'next' => ($count_total[0]->total > 0 && ($page * $count) < $count_total[0]->total) ? $url_next : null,

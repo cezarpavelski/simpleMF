@@ -13,6 +13,12 @@
 				{% endif %}
 			{% endif %}
 
+			<div class="row">
+				<div class="col-lg-12 buttons-margin view-header">
+					<a href="/{{ table }}/new" class="btn btn-w-md btn-primary pull-right">Create New</a>
+				</div>
+			</div>
+
 			{% if records['records'] %}
 				<div class="row table-responsive">
 					<table class="table table-hover table-striped">
@@ -35,7 +41,9 @@
 									<a href="/{{ table }}/{{ record.id }}/edit"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
 								</td>
 								<td>
-									<a href="/{{ table }}/{{ record.id }}/delete"><i class="pe-7s-trash text-danger" style="font-size: 24px"></i></a>
+									<a href="#" class="btn-confirm-delete" data-link="/{{ table }}/{{ record.id }}/delete" data-toggle="modal" data-target="#model-confirm-delete">
+										<i class="pe-7s-trash text-danger" style="font-size: 24px"></i>
+									</a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -50,5 +58,6 @@
 				No records found.
 			</div>
 		{% endif %}
+		{{ include('./pages/partials/confirm_modal.html') }}
 	</section>
 {% endblock content %}
