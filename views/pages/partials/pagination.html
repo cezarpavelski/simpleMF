@@ -1,35 +1,51 @@
 <div class="row">
-	<div class="col-xs-12">
-		<div class="col-xs-12">
-			<div class="dataTables_paginate paging_simple_numbers pull-right">
-				<ul class="pagination">
+	<div class="col-md-6">
+		<div class="dataTables_info pagination pull-right" role="status" aria-live="polite">
+			Showing
+				{% if records['page_active'] == 1 %}
+					{{ records['page_active'] }}
+				{% else %}
+					{{ (records['records_per_page'] * records['page_active']) - (records['records_per_page'] - 1) }}
+				{% endif %}
+			to
+				{% if (records['records_per_page'] * records['page_active']) > records['total'] %}
+					{{ records['total'] }}
+				{% else %}
+					{{ records['records_per_page'] * records['page_active'] }}
+				{% endif %}
+			of
+				{{ records['total'] }} entries
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="dataTables_paginate paging_simple_numbers pull-right">
+			<ul class="pagination">
 
-					{% if records['previous'] %}
-					<li class="paginate_button previous"">
-					<a href="{{ records['previous'] }}" aria-controls="tableExample2" data-dt-idx="0" tabindex="0">Previous</a>
-					</li>
-					{% endif %}
+				{% if records['previous'] %}
+				<li class="paginate_button previous"">
+				<a href="{{ records['previous'] }}" aria-controls="tableExample2" data-dt-idx="0" tabindex="0">Previous</a>
+				</li>
+				{% endif %}
 
-					{% for i in 1..records['total_pages'] %}
-					{% if records['page_active'] == i %}
-					<li class="paginate_button active">
-						<a href="#" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
-					</li>
-					{% else %}
-					<li class="paginate_button">
-						<a href="?page={{ i }}" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
-					</li>
-					{% endif %}
-					{% endfor %}
+				{% for i in 1..records['total_pages'] %}
+				{% if records['page_active'] == i %}
+				<li class="paginate_button active">
+					<a href="#" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
+				</li>
+				{% else %}
+				<li class="paginate_button">
+					<a href="?page={{ i }}" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
+				</li>
+				{% endif %}
+				{% endfor %}
 
-					{% if records['next'] %}
-					<li class="paginate_button next">
-						<a href="{{ records['next'] }}" data-dt-idx="{{ records['total_pages']+1 }}" tabindex="{{ records['total_pages']+1 }}">Next</a>
-					</li>
-					{% endif %}
+				{% if records['next'] %}
+				<li class="paginate_button next">
+					<a href="{{ records['next'] }}" data-dt-idx="{{ records['total_pages']+1 }}" tabindex="{{ records['total_pages']+1 }}">Next</a>
+				</li>
+				{% endif %}
 
-				</ul>
-			</div>
+			</ul>
 		</div>
 	</div>
 </div>
