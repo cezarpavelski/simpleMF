@@ -20,44 +20,65 @@
 			</div>
 
 			{% if records['records'] %}
-				<div class="row table-responsive">
-					<table class="table table-hover table-striped">
-						<tr>
-							<th>Id</th>
-							{% for column in fields %}
-								<th>{{ column.label }}</th>
-							{% endfor %}
-							<th></th>
-							<th></th>
-						</tr>
-
-						{% for record in records['records'] %}
-							<tr>
-								<td>{{ record.id }}</td>
-								{% for column in fields %}
-									<td>{{ attribute(record, column.field) }}</td>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table id="table-list" class="table table-hover table-striped">
+							<thead>
+								<tr>
+									<th>Id</th>
+									{% for column in fields %}
+										<th>{{ column.label }}</th>
+									{% endfor %}
+									<th class="hidden"></th>
+									<th class="hidden"></th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for record in records['records'] %}
+									<tr>
+										<td>{{ record.id }}</td>
+										{% for column in fields %}
+											<td>{{ attribute(record, column.field) }}</td>
+										{% endfor %}
+										<td>
+											<a href="/{{ table }}/{{ record.id }}/edit"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
+										</td>
+										<td>
+											<a href="#" class="btn-confirm-delete" data-link="/{{ table }}/{{ record.id }}/delete" data-toggle="modal" data-target="#model-confirm-delete">
+												<i class="pe-7s-trash text-danger" style="font-size: 24px"></i>
+											</a>
+										</td>
+									</tr>
 								{% endfor %}
-								<td>
-									<a href="/{{ table }}/{{ record.id }}/edit"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
-								</td>
-								<td>
-									<a href="#" class="btn-confirm-delete" data-link="/{{ table }}/{{ record.id }}/delete" data-toggle="modal" data-target="#model-confirm-delete">
-										<i class="pe-7s-trash text-danger" style="font-size: 24px"></i>
-									</a>
-								</td>
-							</tr>
-						{% endfor %}
-					</table>
+							</tbody>
+						</table>
+					</div>
+
+					{{ include('./pages/partials/pagination.html') }}
+
 				</div>
+			{% else %}
+				<div class="panel-body">
+					No records found.
+				</div>
+			{% endif %}
 
-				{{ include('./pages/partials/pagination.html') }}
+			{{ include('./pages/partials/confirm_modal.html') }}
 
-			</div>
-		{% else %}
-			<div class="panel-body">
-				No records found.
-			</div>
-		{% endif %}
-		{{ include('./pages/partials/confirm_modal.html') }}
+		</div>
 	</section>
 {% endblock content %}
+
+{% block css %}
+	<link rel="stylesheet" href="vendor/datatables/datatables.min.css">
+{% endblock css %}
+
+{% block javascript %}
+	<script>
+		$(document).ready(function () {
+			$('#table-list').DataTable({
+				"dom": 't'
+			});
+		});
+	</script>
+{% endblock javascript %}
