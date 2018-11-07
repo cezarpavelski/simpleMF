@@ -10,6 +10,7 @@ interface IActiveRecord
     public function findAll(): array;
     public function findWhere(string $where, array $params): array;
     public function delete(int $id): bool;
-    public function paginate(int $count, string $where): array;
+    public function paginate(int $count, string $where, array $params): array;
+	public function count(string $where, array $params): int;
 
 }

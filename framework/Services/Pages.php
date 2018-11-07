@@ -96,12 +96,33 @@ class Pages
     public static function list(string $table): array
     {
 		$page = new Page($table);
+		$search_expression = Request::get('search');
+		$where[] = '1=1';
+		$params = [];
+
+		if ($search_expression) {
+
+			$pieces_search_expression = array_map(function($value) {
+				return explode("=", trim($value));
+			}, explode(',', $search_expression));
+
+			foreach ($pieces_search_expression as $piece) {
+				if ($piece[0]) {
+					$where[] = strtolower(trim($piece[0]))."=?";
+					$params[] = trim($piece[1]);
+				}
+			}
+
+		}
+
+		$records = $page->paginate(getenv('RECORDS_PAGINATION'), implode(" and ", $where), $params);
+		$records['search'] = $search_expression;
 
 		return [
 			'title' => MainComponents::getTitle($table),
 			'fields' => MainComponents::getFields($table),
 			'table' => $table,
-			'records' => $page->paginate(getenv('RECORDS_PAGINATION')),
+			'records' => $records,
 		];
     }
 

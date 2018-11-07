@@ -17,6 +17,7 @@ class User extends BaseModel
 
     public function __construct($id = NULL, $name = NULL, $email = NULL, $password = NULL, $created_at = NULL)
     {
+		parent::__construct($this->table);
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;

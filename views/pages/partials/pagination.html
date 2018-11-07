@@ -22,27 +22,27 @@
 			<ul class="pagination">
 
 				{% if records['previous'] %}
-				<li class="paginate_button previous"">
-				<a href="{{ records['previous'] }}" aria-controls="tableExample2" data-dt-idx="0" tabindex="0">Previous</a>
-				</li>
+					<li class="paginate_button previous">
+						<a href="{{ records['previous'] }}&search={{ records['search'] }}" aria-controls="tableExample2" data-dt-idx="0" tabindex="0">Previous</a>
+					</li>
 				{% endif %}
 
 				{% for i in 1..records['total_pages'] %}
-				{% if records['page_active'] == i %}
-				<li class="paginate_button active">
-					<a href="#" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
-				</li>
-				{% else %}
-				<li class="paginate_button">
-					<a href="?page={{ i }}" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
-				</li>
-				{% endif %}
+					{% if records['page_active'] == i %}
+					<li class="paginate_button active">
+						<a href="#" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
+					</li>
+					{% else %}
+					<li class="paginate_button">
+						<a href="?page={{ i }}&search={{ records['search'] }}" data-dt-idx="{{ i }}" tabindex="{{ i }}">{{ i }}</a>
+					</li>
+					{% endif %}
 				{% endfor %}
 
 				{% if records['next'] %}
-				<li class="paginate_button next">
-					<a href="{{ records['next'] }}" data-dt-idx="{{ records['total_pages']+1 }}" tabindex="{{ records['total_pages']+1 }}">Next</a>
-				</li>
+					<li class="paginate_button next">
+						<a href="{{ records['next'] }}&search={{ records['search'] }}" data-dt-idx="{{ records['total_pages']+1 }}" tabindex="{{ records['total_pages']+1 }}">Next</a>
+					</li>
 				{% endif %}
 
 			</ul>

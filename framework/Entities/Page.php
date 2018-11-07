@@ -8,7 +8,8 @@ class Page extends BaseModel
 
     public function __construct(string $table)
     {
-        $this->table = $table;
+		parent::__construct($table);
+		$this->table = $table;
     }
 
 }

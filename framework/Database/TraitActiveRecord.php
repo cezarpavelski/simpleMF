@@ -36,10 +36,10 @@ trait TraitActiveRecord
         return $this->active_record->findAll();
     }
 
-	public function paginate(int $count, string $where = '1=1'): array
+	public function paginate(int $count, string $where, array $params): array
 	{
 		$this->active_record = new ActiveRecord($this, $this->table);
-		return $this->active_record->paginate($count, $where);
+		return $this->active_record->paginate($count, $where, $params);
 	}
 
 	public function delete(int $id): bool
@@ -48,4 +48,9 @@ trait TraitActiveRecord
 		return $this->active_record->delete($id);
 	}
 
+	public function count(string $where, array $params): int
+	{
+		$this->active_record = new ActiveRecord($this, $this->table);
+		return $this->active_record->count($where, $params);
+	}
 }
