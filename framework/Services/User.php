@@ -4,27 +4,20 @@ namespace Framework\Services;
 
 use Framework\Mail\Mailer;
 use Framework\Entities\User as UserEntity;
-use Framework\Auth\Authenticator;
-use Framework\Facades\Request;
+use Framework\Auth\AuthenticatorSession;
 use Framework\Session\Store as Session;
 use Framework\Exceptions\AuthenticationException;
 use Framework\FileSystem\File as FileSystem;
-use StdClass;
 
 class User
 {
 
-    public function login(): ?StdClass
+    public function login(string $email, string $password): \stdClass
     {
-        $email = Request::post('email');
-        $password = $this->cryptPassword(Request::post('password'));
-        $user = Authenticator::authenticate($email, $password);
+        $user = AuthenticatorSession::authenticate($email, $password);
 
-        if(!empty($user)){
-            Session::set('user', json_encode($user[0]));
-            return $user[0];
-        }
-        throw new AuthenticationException("User not found", 1);
+        return $user;
+
     }
 
     public function list(): array

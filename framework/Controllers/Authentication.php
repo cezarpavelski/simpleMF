@@ -2,6 +2,7 @@
 
 namespace Framework\Controllers;
 
+use Framework\Facades\Request;
 use Framework\Services\User as UserService;
 
 class Authentication extends BaseController
@@ -10,8 +11,13 @@ class Authentication extends BaseController
     {
         $userService = new UserService();
         try {
-            $user = $userService->login();
-            return self::render([$user], 'home/save_form.html');
+
+			$email = Request::post('email');
+			$password = Request::post('password');
+            $user = $userService->login($email, $password);
+
+            return self::redirect( '/');
+
         } catch (\Exception $e) {
 			return self::render([], 'login.html');
         }
