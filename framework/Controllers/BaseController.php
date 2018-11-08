@@ -3,6 +3,7 @@
 namespace Framework\Controllers;
 
 use Framework\Facades\Request;
+use Framework\Redirect\Redirect;
 use Framework\View\Template;
 
 class BaseController
@@ -20,6 +21,11 @@ class BaseController
 			return self::json(['Not Acceptable'], 406);
 		}
 
+	}
+
+	protected static function redirect(string $route, array $params = []): string
+	{
+		Redirect::route($route, $params);
 	}
 
 	private static function html(array $params = [], string $pathTeplate): string
