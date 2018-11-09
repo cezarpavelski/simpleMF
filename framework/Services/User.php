@@ -4,21 +4,10 @@ namespace Framework\Services;
 
 use Framework\Mail\Mailer;
 use Framework\Entities\User as UserEntity;
-use Framework\Auth\AuthenticatorSession;
-use Framework\Session\Store as Session;
-use Framework\Exceptions\AuthenticationException;
 use Framework\FileSystem\File as FileSystem;
 
 class User
 {
-
-    public function login(string $email, string $password): \stdClass
-    {
-        $user = AuthenticatorSession::authenticate($email, $password);
-
-        return $user;
-
-    }
 
     public function list(): array
     {
@@ -44,19 +33,6 @@ class User
         return $user->findAll();
     }
 
-    public function validateSession(): bool
-    {
-        if(Session::get('user')){
-            return true;
-        }
-        throw new AuthenticationException("Session expired", 1);
-    }
-
-    public function logout(): bool
-    {
-        return true;
-    }
-
     public static function new(): bool
     {
         $password =  hash('sha256', getenv('APP_KEY').'123456');
@@ -78,11 +54,6 @@ class User
         } catch (MailException $e) {
             echo $e->getMessage();exit;
         }
-    }
-
-    private function cryptPassword(string $password): string
-    {
-        return hash('sha256', getenv('APP_KEY').$password);
     }
 
 }

@@ -23,7 +23,7 @@ class BaseController
 
 	}
 
-	protected static function redirect(string $route, array $params = []): string
+	protected static function redirect(string $route, array $params = []): void
 	{
 		Redirect::route($route, $params);
 	}
@@ -37,7 +37,7 @@ class BaseController
 	private static function json(array $params = [], int $responseCode = 200): string
 	{
 		header('Content-Type: application/json; charset=utf-8');
-		header('Aceept: application/json;');
+		header('Accept: application/json;');
 		http_response_code($responseCode);
 		return json_encode($params);
 	}

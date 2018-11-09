@@ -2,8 +2,6 @@
 
 namespace Framework\Entities;
 
-use Framework\Entities\BaseModel;
-
 class User extends BaseModel
 {
     protected $table = 'users';

@@ -2,37 +2,41 @@
 
 namespace Framework\Controllers;
 
+use Framework\Services\Authentication as AuthenticatorService;
 use Framework\Facades\Request;
-use Framework\Services\User as UserService;
 
 class Authentication extends BaseController
 {
-    public static function login(): string
+    public static function login(): void
     {
-        $userService = new UserService();
         try {
 
 			$email = Request::post('email');
 			$password = Request::post('password');
-            $user = $userService->login($email, $password);
+            AuthenticatorService::login($email, $password);
 
-            return self::redirect( '/');
+            self::redirect( '/');
 
         } catch (\Exception $e) {
-			return self::render([], 'login.html');
+			self::redirect( '/login', [error => $e->getMessage()]);
         }
 
     }
 
+    public static function logout(): void
+	{
+		AuthenticatorService::logout();
+		self::redirect( '/login');
+	}
 
     public static function show(): string
     {
-        $userService = new UserService();
         try {
-            $userService->validateSession();
-            return self::render([], 'home/save_form.html');
+			AuthenticatorService::validateSession();
+			self::redirect( '/');
         } catch (\Exception $e) {
-            return self::render([], 'login.html');
+        	$params = Request::get('error') ? [error => Request::get('error')] : [];
+			return self::render($params, 'login.html');
         }
     }
 

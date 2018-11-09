@@ -20,7 +20,7 @@ class AuthenticatorJWT
 		$payload = self::getPayload($user);
 		$signature = self::getSignature($header, $payload);
 
-		return $header.$payload.$signature;
+		return "$header.$payload.$signature";
     }
 
 	/**

@@ -25,8 +25,16 @@ class AuthenticatorSession
     public static function validate(): void
 	{
 		if(!Session::get('user')){
-			throw new AuthenticationException("Unauthorized", 400);
+			throw new AuthenticationException("Session expired!", 400);
 		}
+	}
+
+	/**
+	 * * @return void
+	 */
+	public static function destroy(): void {
+		session_unset();
+		session_destroy();
 	}
 
 	private static function cryptPassword(string $password): string
@@ -49,7 +57,7 @@ class AuthenticatorSession
 
 			return $user;
 		}
-		throw new AuthenticationException("User not found", 404);
+		throw new AuthenticationException("Username or password is invalid!", 404);
 	}
 
 	private static function setUserSession(\stdClass $user): void

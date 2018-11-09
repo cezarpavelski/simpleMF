@@ -12,6 +12,13 @@ authenticationShow:
     options:
         utf8: true
 
+authenticationLogout:
+    path:     /logout
+    defaults: { _controller: '\Framework\Controllers\Authentication::logout' }
+    methods: [GET]
+    options:
+        utf8: true
+
 pagesSave:
     path:     /{table}
     defaults: { _controller: '\Framework\Controllers\Pages::save' }
