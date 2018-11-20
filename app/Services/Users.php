@@ -13,7 +13,7 @@ class Users
 		$user->id = null;
 		$user->name = Request::post('name');
 		$user->email = Request::post('email');
-		$user->password = Request::post('password');
+		$user->password = hash('sha256', getenv('APP_KEY').Request::post('password'));
 		$user->type = Request::post('type');
 		$user->created_at = date("Y-m-d H:i:s");
 

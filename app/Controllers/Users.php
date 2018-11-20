@@ -14,7 +14,7 @@ class Users extends BaseController
 		try {
 
 			$email = Request::post('email');
-			$password = Request::post('password');
+			$password = hash('sha256', getenv('APP_KEY').Request::post('password'));
 			$token = AuthenticatorJWT::authenticate($email, $password);
 
 			return self::json(
