@@ -60,7 +60,12 @@ commonsImport:
 
 pagesSave:
     path:     /{table}
-    defaults: { _controller: '\Framework\Controllers\Pages::save' }
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::save',
+        _middlewares: [
+          'Framework\Middlewares\AuthenticationJWTMiddleware',
+        ]
+      }
     methods: [POST]
     options:
         utf8: true
@@ -69,6 +74,9 @@ pagesList:
     path:     /{table}
     defaults: {
         _controller: '\Framework\Controllers\Pages::list',
+        _middlewares: [
+          'Framework\Middlewares\AuthenticationJWTMiddleware',
+        ]
       }
     methods: [GET]
     options:
@@ -77,7 +85,10 @@ pagesList:
 pagesUpdate:
     path:     /{table}/{id}
     defaults: {
-        _controller: '\Framework\Controllers\Pages::update'
+        _controller: '\Framework\Controllers\Pages::update',
+        _middlewares: [
+          'Framework\Middlewares\AuthenticationJWTMiddleware',
+        ]
       }
     methods: [PUT]
     options:
@@ -88,6 +99,9 @@ pagesDelete:
     methods: [DELETE]
     defaults: {
         _controller: '\Framework\Controllers\Pages::delete',
+        _middlewares: [
+          'Framework\Middlewares\AuthenticationJWTMiddleware',
+        ]
       }
     options:
         utf8: true

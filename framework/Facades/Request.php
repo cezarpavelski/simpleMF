@@ -12,6 +12,9 @@ class Request
 
     public static function post(string $key): ?string
     {
+		if (self::isApplicationJson()) {
+			$_POST = json_decode(file_get_contents('php://input'), true);
+		}
         return isset($_POST[$key]) ? filter_var($_POST[$key]) : null;
     }
 
@@ -30,4 +33,8 @@ class Request
 		return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
 	}
 
+	private static function isApplicationJson()
+	{
+		return Request::server('HTTP_ACCEPT') === 'application/json';
+	}
 }
