@@ -77,12 +77,20 @@ class ActiveRecord implements IActiveRecord
         return count($rows) > 0 ? $rows : [];
     }
 
+	public function last(): \StdClass
+	{
+		$sth = $this->connection->prepare("SELECT * FROM $this->table ORDER BY id DESC LIMIT 1");
+		$sth->execute([]);
+		$row = $sth->fetchObject();
+		return $row ? $row : new \StdClass;
+	}
+
     public function paginate(int $count, string $where, array $params): array
 	{
 		try {
 			$count_total = $this->count($where, $params);
 			$page = Request::get('page') || Request::get('page') > 0  ? Request::get('page') : 1;
-			$records = $this->findWhere($where." LIMIT ".($page-1)*$count.", $count", $params);
+			$records = $this->findWhere($where." ORDER BY id ASC LIMIT ".($page-1)*$count.", $count", $params);
 		} catch (PDOException $e) {
 			$count_total = 0;
 		}
@@ -135,8 +143,10 @@ class ActiveRecord implements IActiveRecord
     {
         $class = new ReflectionObject($this->class);
         foreach($class->getProperties(ReflectionProperty::IS_PUBLIC) as $prop){
-            $placeholder[] = $prop->getName().'=?';
-            $this->params[] = $this->class->{$prop->getName()};
+        	if (!is_null($this->class->{$prop->getName()})) {
+				$placeholder[] = $prop->getName() . '=?';
+				$this->params[] = $this->class->{$prop->getName()};
+			}
         }
 
         $this->params[] = $this->class->id;

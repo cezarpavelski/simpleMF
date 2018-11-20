@@ -34,7 +34,7 @@ class BaseController
 		return $template->render($pathTeplate, $params);
 	}
 
-	private static function json(array $params = [], int $responseCode = 200): string
+	protected static function json(array $params = [], int $responseCode = 200): string
 	{
 		header('Content-Type: application/json; charset=utf-8');
 		header('Accept: application/json;');

@@ -58,10 +58,10 @@ commonsImport:
     options:
         utf8: true
 
-pagesSave:
-    path:     /{table}
+usersSave:
+    path:     /users
     defaults: {
-        _controller: '\Framework\Controllers\Pages::save',
+        _controller: '\App\Controllers\Users::save',
         _middlewares: [
           'Framework\Middlewares\AuthenticationJWTMiddleware',
         ]
@@ -70,10 +70,10 @@ pagesSave:
     options:
         utf8: true
 
-pagesList:
-    path:     /{table}
+usersList:
+    path:     /users
     defaults: {
-        _controller: '\Framework\Controllers\Pages::list',
+        _controller: '\App\Controllers\Users::list',
         _middlewares: [
           'Framework\Middlewares\AuthenticationJWTMiddleware',
         ]
@@ -82,10 +82,10 @@ pagesList:
     options:
         utf8: true
 
-pagesUpdate:
-    path:     /{table}/{id}
+usersUpdate:
+    path:     /users/{id}
     defaults: {
-        _controller: '\Framework\Controllers\Pages::update',
+        _controller: '\App\Controllers\Users::update',
         _middlewares: [
           'Framework\Middlewares\AuthenticationJWTMiddleware',
         ]
@@ -94,11 +94,23 @@ pagesUpdate:
     options:
         utf8: true
 
-pagesDelete:
-    path:     /{table}/{id}
+usersDelete:
+    path:     /users/{id}
     methods: [DELETE]
     defaults: {
-        _controller: '\Framework\Controllers\Pages::delete',
+        _controller: '\App\Controllers\Users::delete',
+        _middlewares: [
+          'Framework\Middlewares\AuthenticationJWTMiddleware',
+        ]
+      }
+    options:
+        utf8: true
+
+usersView:
+    path:     /users/{id}
+    methods: [GET]
+    defaults: {
+        _controller: '\App\Controllers\Users::view',
         _middlewares: [
           'Framework\Middlewares\AuthenticationJWTMiddleware',
         ]
