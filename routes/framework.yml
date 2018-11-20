@@ -1,67 +1,66 @@
-authenticationLogin:
-    path:     /login
+authenticationLoginAdmin:
+    path:     /admin/login
     defaults: { _controller: '\Framework\Controllers\Authentication::login' }
     methods: [POST]
     options:
         utf8: true
 
-authenticationShow:
-    path:     /login
+authenticationShowAdmin:
+    path:     /admin
     defaults: { _controller: '\Framework\Controllers\Authentication::show' }
     methods: [GET]
     options:
         utf8: true
 
-authenticationLogout:
-    path:     /logout
+authenticationLogoutAdmin:
+    path:     /admin/logout
     defaults: { _controller: '\Framework\Controllers\Authentication::logout' }
     methods: [GET]
     options:
         utf8: true
 
-pagesSave:
-    path:     /{table}
+pagesSaveAdmin:
+    path:     /admin/{table}
     defaults: { _controller: '\Framework\Controllers\Pages::save' }
     methods: [POST]
     options:
         utf8: true
 
-pagesList:
-    path:     /{table}
+pagesListAdmin:
+    path:     /admin/{table}
     defaults: {
         _controller: '\Framework\Controllers\Pages::list',
       }
     options:
         utf8: true
 
-pagesNew:
-    path:     /{table}/new
+pagesNewAdmin:
+    path:     /admin/{table}/new
     defaults: {
         _controller: '\Framework\Controllers\Pages::new',
       }
     options:
         utf8: true
 
-pagesEdit:
-    path:     /{table}/{id}/edit
+pagesEditAdmin:
+    path:     /admin/{table}/{id}/edit
     defaults: {
         _controller: '\Framework\Controllers\Pages::edit',
       }
     options:
         utf8: true
 
-pagesUpdate:
-    path:     /{table}/{id}
+pagesUpdateAdmin:
+    path:     /admin/{table}/{id}
     defaults: { _controller: '\Framework\Controllers\Pages::update' }
     methods: [POST]
     options:
         utf8: true
 
-pagesDelete:
-    path:     /{table}/{id}/delete
+pagesDeleteAdmin:
+    path:     /admin/{table}/{id}/delete
     defaults: {
         _controller: '\Framework\Controllers\Pages::delete',
       }
     options:
         utf8: true
-

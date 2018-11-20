@@ -57,3 +57,37 @@ commonsImport:
     methods: [POST]
     options:
         utf8: true
+
+pagesSave:
+    path:     /{table}
+    defaults: { _controller: '\Framework\Controllers\Pages::save' }
+    methods: [POST]
+    options:
+        utf8: true
+
+pagesList:
+    path:     /{table}
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::list',
+      }
+    methods: [GET]
+    options:
+        utf8: true
+
+pagesUpdate:
+    path:     /{table}/{id}
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::update'
+      }
+    methods: [PUT]
+    options:
+        utf8: true
+
+pagesDelete:
+    path:     /{table}/{id}
+    methods: [DELETE]
+    defaults: {
+        _controller: '\Framework\Controllers\Pages::delete',
+      }
+    options:
+        utf8: true

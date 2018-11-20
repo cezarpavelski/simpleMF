@@ -23,8 +23,8 @@ class Router
 
 		$fileLocator = new FileLocator(array(__DIR__.'/../../routes'));
 		$loader = new YamlFileLoader($fileLocator);
-		$routes = $loader->load(__DIR__.'/../../routes/app.yml');
-		$routes->addCollection($loader->load(__DIR__.'/../../routes/framework.yml'));
+		$routes = $loader->load(__DIR__.'/../../routes/framework.yml');
+		$routes->addCollection($loader->load(__DIR__.'/../../routes/app.yml'));
 		$template = new Template(__DIR__.'/../../views');
 
 		try {

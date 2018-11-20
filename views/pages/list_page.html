@@ -15,7 +15,7 @@
 
 			<div class="row">
 				<div class="col-md-6">
-					<form action="/{{ table }}" method="GET">
+					<form action="/admin/{{ table }}" method="GET">
 						<div class="input-group m-b-xs">
 							<input class="form-control" type="text" name="search" value="{{ records['search'] }}" placeholder="Type your search expression..." style="width: 100%">
 							<div class="input-group-btn">
@@ -25,7 +25,7 @@
 					</form>
 				</div>
 				<div class="col-md-6 buttons-margin">
-					<a href="/{{ table }}/new" class="btn btn-w-md btn-primary pull-right">Create New</a>
+					<a href="/admin/{{ table }}/new" class="btn btn-w-md btn-primary pull-right">Create New</a>
 				</div>
 			</div>
 
@@ -51,10 +51,10 @@
 											<td>{{ attribute(record, column.field) }}</td>
 										{% endfor %}
 										<td>
-											<a href="/{{ table }}/{{ record.id }}/edit"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
+											<a href="/admin/{{ table }}/{{ record.id }}/edit"><i class="pe-7s-note2 text-info" style="font-size: 24px"></i></a>
 										</td>
 										<td>
-											<a href="#" class="btn-confirm-delete" data-link="/{{ table }}/{{ record.id }}/delete" data-toggle="modal" data-target="#model-confirm-delete">
+											<a href="#" class="btn-confirm-delete" data-link="/admin/{{ table }}/{{ record.id }}/delete" data-toggle="modal" data-target="#model-confirm-delete">
 												<i class="pe-7s-trash text-danger" style="font-size: 24px"></i>
 											</a>
 										</td>

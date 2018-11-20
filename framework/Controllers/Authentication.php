@@ -15,10 +15,10 @@ class Authentication extends BaseController
 			$password = Request::post('password');
             AuthenticatorService::login($email, $password);
 
-            self::redirect( '/');
+            self::redirect( '/admin');
 
         } catch (\Exception $e) {
-			self::redirect( '/login', [error => $e->getMessage()]);
+			self::redirect( '/admin/login', [error => $e->getMessage()]);
         }
 
     }
@@ -26,14 +26,14 @@ class Authentication extends BaseController
     public static function logout(): void
 	{
 		AuthenticatorService::logout();
-		self::redirect( '/login');
+		self::redirect( '/admin/login');
 	}
 
     public static function show(): string
     {
         try {
 			AuthenticatorService::validateSession();
-			self::redirect( '/');
+			self::redirect( '/admin');
         } catch (\Exception $e) {
         	$params = Request::get('error') ? [error => Request::get('error')] : [];
 			return self::render($params, 'login.html');
