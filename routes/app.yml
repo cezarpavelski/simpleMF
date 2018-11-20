@@ -58,6 +58,15 @@ commonsImport:
     options:
         utf8: true
 
+usersLogin:
+    path:     /authenticate
+    defaults: {
+        _controller: '\App\Controllers\Users::authenticate',
+      }
+    methods: [POST]
+    options:
+        utf8: true
+
 usersSave:
     path:     /users
     defaults: {
@@ -101,6 +110,7 @@ usersDelete:
         _controller: '\App\Controllers\Users::delete',
         _middlewares: [
           'Framework\Middlewares\AuthenticationJWTMiddleware',
+          'Framework\Middlewares\IsAdminUserJWTMiddleware',
         ]
       }
     options:

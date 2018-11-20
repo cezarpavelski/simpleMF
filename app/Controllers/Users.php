@@ -3,10 +3,33 @@
 namespace App\Controllers;
 
 use App\Services\Users as UsersService;
+use Framework\Auth\AuthenticatorJWT;
 use Framework\Controllers\BaseController;
+use Framework\Facades\Request;
 
 class Users extends BaseController
 {
+	public static function authenticate(): string
+	{
+		try {
+
+			$email = Request::post('email');
+			$password = Request::post('password');
+			$token = AuthenticatorJWT::authenticate($email, $password);
+
+			return self::json(
+				["token" => $token],
+				200
+			);
+
+		} catch (\Exception $e) {
+			return self::json(
+				[$e->getCode() => $e->getMessage()],
+				$e->getCode()
+			);
+		}
+
+	}
 
     public static function save(): string
 	{

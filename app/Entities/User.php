@@ -15,4 +15,9 @@ class User extends BaseModel
     public $type;
     public $created_at;
 
+	public function __construct()
+	{
+		parent::__construct($this->table);
+	}
+
 }

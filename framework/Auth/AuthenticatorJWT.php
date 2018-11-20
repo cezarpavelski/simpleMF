@@ -71,11 +71,11 @@ class AuthenticatorJWT
 		return base64_encode($header);
 	}
 
-	private static function getPayload(User $user): string
+	private static function getPayload(\stdClass $user): string
 	{
 		$payload = [
 			'iss' => 'localhost',
-			'user' => $user[0],
+			'user' => $user,
 		];
 
 		$payload = json_encode($payload);
@@ -84,7 +84,7 @@ class AuthenticatorJWT
 
 	private static function getSignature(string $header, string $payload): string
 	{
-		$signature = hash_hmac('sha256',$header.$payload, getenv('APP_KEY'),true);
+		$signature = hash_hmac('sha256',"$header.$payload", getenv('APP_KEY'),true);
 		return base64_encode($signature);
 	}
 }

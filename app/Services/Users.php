@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Framework\Entities\User;
+use App\Entities\User;
 use Framework\Facades\Request;
 
 class Users
